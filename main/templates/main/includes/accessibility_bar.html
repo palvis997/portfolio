@@ -1,0 +1,319 @@
+{% load static %}
+<style>
+/* ============================================================
+   RESPONSIVE ACCESSIBILITY SIDE PANEL (REFLOW & RESIZE)
+   ============================================================ */
+:root {
+    --a11y-panel-width: 300px;
+}
+
+@media (max-width: 991.98px) {
+    :root {
+        --a11y-panel-width: 280px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    :root {
+        --a11y-panel-width: min(300px, 80vw);
+    }
+}
+
+/* Site Wrapper: Anchored left, reflows width cleanly */
+.site-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    left: 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+/* Navbar: Shrinks width in tandem without horizontal offset */
+#main-navbar {
+    width: 100%;
+    left: 0;
+    right: 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+/* WHEN PANEL IS OPEN: The site width smoothly contracts to make room */
+body.a11y-drawer-open {
+    overflow-x: hidden !important;
+}
+
+body.a11y-drawer-open .site-wrapper {
+    width: calc(100% - var(--a11y-panel-width)) !important;
+    margin-right: var(--a11y-panel-width) !important;
+}
+
+body.a11y-drawer-open #main-navbar {
+    width: calc(100% - var(--a11y-panel-width)) !important;
+}
+
+/* Floating Action buttons (WhatsApp, Back-to-top) adapt position */
+.whatsapp-float,
+.back-to-top {
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.a11y-drawer-open .whatsapp-float {
+    right: calc(var(--a11y-panel-width) + 20px) !important;
+}
+
+body.a11y-drawer-open .back-to-top {
+    right: calc(var(--a11y-panel-width) + 20px) !important;
+}
+
+/* Accessibility Trigger Button: ONLY the ♿ symbol */
+.a11y-trigger-btn {
+    position: fixed !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 44px !important;
+    height: 48px !important;
+    border-radius: 12px 0 0 12px !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(255, 255, 255, 0.85) !important;
+    border-right: none !important;
+    box-shadow: -4px 4px 18px rgba(0, 0, 0, 0.35) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.45rem !important;
+    cursor: pointer !important;
+    z-index: 2147483647 !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease, width 0.2s ease !important;
+}
+
+.a11y-trigger-btn:hover {
+    width: 48px !important;
+}
+
+.a11y-trigger-icon {
+    display: inline-block;
+    line-height: 1;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+body.a11y-drawer-open .a11y-trigger-btn {
+    right: var(--a11y-panel-width) !important;
+}
+
+/* Accessibility Side Drawer (Revealed on Right Column) */
+.a11y-panel {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: var(--a11y-panel-width) !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    background: var(--bg-primary) !important;
+    border-left: 1px solid var(--bg-card-border) !important;
+    border-radius: 0 !important;
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.35) !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 2147483646 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.a11y-panel.open,
+body.a11y-drawer-open .a11y-panel {
+    transform: translateX(0) !important;
+    pointer-events: all !important;
+}
+
+.a11y-panel-body {
+    flex: 1 1 auto;
+    overflow-y: auto !important;
+    padding: 16px 18px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+@media (max-width: 767.98px) {
+    .a11y-trigger-btn {
+        top: 55% !important;
+        width: 42px !important;
+        height: 46px !important;
+        font-size: 1.3rem !important;
+    }
+}
+</style>
+
+<div class="a11y-widget-wrapper" id="a11y-widget" role="region" aria-label="Accessibility controls">
+    <!-- Floating Trigger Button (ONLY ♿ ICON) -->
+    <button class="a11y-trigger-btn" id="a11y-toggle-btn" type="button"
+            aria-expanded="false" aria-controls="a11y-panel"
+            aria-label="Accessibility Options" title="Accessibility Options">
+        <span class="a11y-trigger-icon" aria-hidden="true">♿</span>
+    </button>
+
+    <!-- Accessibility Side Drawer Panel -->
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-modal="true" aria-labelledby="a11y-panel-title" hidden>
+        <!-- Panel Header -->
+        <div class="a11y-panel-header">
+            <div class="d-flex align-items-center gap-2">
+                <div class="a11y-header-icon">
+                    <span aria-hidden="true" style="font-size: 1.25rem;">♿</span>
+                </div>
+                <div>
+                    <h3 class="a11y-panel-title mb-0 fs-6 fw-bold" id="a11y-panel-title">Accessibility Options</h3>
+                    <span class="a11y-panel-subtitle small text-muted">Customize display &amp; reading</span>
+                </div>
+            </div>
+            <button class="a11y-close-btn" id="a11y-close-btn" type="button" aria-label="Close accessibility options">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Panel Body -->
+        <div class="a11y-panel-body">
+            <!-- Toast notification inside panel -->
+            <div class="a11y-toast" id="a11y-toast" role="status" aria-live="polite" style="display: none;">
+                <i class="fas fa-check-circle me-1" aria-hidden="true"></i>
+                <span id="a11y-toast-text">Settings restored to default.</span>
+            </div>
+
+            <!-- Group 1: Text Sizing (1. Text Size + / 2. Text Size -) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-text-height me-1 text-primary" aria-hidden="true"></i> Text Size</span>
+                    <span class="badge bg-secondary-custom a11y-scale-badge" id="a11y-scale-value">100%</span>
+                </div>
+                <div class="a11y-btn-group">
+                    <button type="button" class="a11y-btn" id="a11y-font-decrease" aria-label="Decrease text size" title="Text Size -">
+                        <span class="fw-bold">A-</span>
+                        <small>Decrease</small>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11y-font-reset" aria-label="Reset text size" title="Default Text Size">
+                        <span class="fw-bold">A</span>
+                        <small>Default</small>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11y-font-increase" aria-label="Increase text size" title="Text Size +">
+                        <span class="fw-bold">A+</span>
+                        <small>Increase</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Group 2: Visual Adjustments (3. High Contrast / 4. Grayscale / 5. Highlight Links / 6. Readable Font) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-eye me-1 text-primary" aria-hidden="true"></i> Visual Adjustments</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-high-contrast" aria-pressed="false">
+                            <i class="fas fa-adjust a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">High Contrast</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-grayscale" aria-pressed="false">
+                            <i class="fas fa-palette a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Grayscale</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-highlight-links" aria-pressed="false">
+                            <i class="fas fa-link a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Highlight Links</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-readable-font" aria-pressed="false">
+                            <i class="fas fa-font a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Readable Font</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 3: Spacing & Cursor (7. Line Spacing / 8. Letter Spacing / 9. Large Cursor) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-arrows-alt-v me-1 text-primary" aria-hidden="true"></i> Spacing &amp; Cursor</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-line-spacing" aria-pressed="false">
+                            <i class="fas fa-align-justify a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Line Spacing</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-letter-spacing" aria-pressed="false">
+                            <i class="fas fa-text-width a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Letter Spacing</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="a11y-toggle-card" id="a11y-large-cursor" aria-pressed="false">
+                            <i class="fas fa-mouse-pointer a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Large Cursor</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 4: Interaction & Voice (10. Stop Animations / 11. Read Aloud / 12. Keyboard Navigation) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-tools me-1 text-primary" aria-hidden="true"></i> Interaction &amp; Voice</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-stop-animations" aria-pressed="false">
+                            <i class="fas fa-ban a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Stop Animations</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="a11y-toggle-card" id="a11y-keyboard-nav" aria-pressed="false">
+                            <i class="fas fa-keyboard a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Focus Outline</span>
+                            <span class="a11y-status-dot" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="a11y-speech-btn" id="a11y-read-aloud" aria-pressed="false">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-volume-up fs-5" id="a11y-read-icon" aria-hidden="true"></i>
+                                <div class="text-start">
+                                    <span class="d-block fw-bold" id="a11y-read-label">Read Aloud</span>
+                                    <small class="text-muted d-block" id="a11y-read-sub">Listen to page content</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-secondary-subtle text-light small px-2 py-1" id="a11y-read-status">Play</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Footer (13. Reset Accessibility) -->
+        <div class="a11y-panel-footer">
+            <button type="button" class="btn btn-outline-danger btn-sm w-100 py-2 fw-bold" id="a11y-reset-all">
+                <i class="fas fa-rotate-left me-1" aria-hidden="true"></i> Reset All Settings
+            </button>
+        </div>
+    </div>
+</div>

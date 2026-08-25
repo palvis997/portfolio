@@ -1,0 +1,297 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Pavis Mugo Muruga | Background, Education &amp; Goals{% endblock %}
+{% block meta_description %}Learn about Pavis Mugo Muruga, Year 2 BSc IT student at Kirinyaga University, industrial attachment at ICT Authority, career objectives, and technical journey.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">About Me</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 text-white fw-bold">About Pavis Mugo Muruga</h1>
+                <p class="lead text-secondary mb-0">
+                    Information Technology Student &bull; Python &amp; Django Developer &bull; ICT Support Professional
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'resume' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-file-download me-2"></i> View Resume
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 1. WHO I AM & MY STORY -->
+<section class="section-padding" id="who-i-am">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="section-header text-start mb-4">
+                    <span class="section-tag">Profile</span>
+                    <h2 class="section-title text-white">Who I Am</h2>
+                </div>
+                <p class="text-light fs-5 leading-relaxed mb-3">
+                    I am <strong>Pavis Mugo Muruga</strong>, a second-year Bachelor of Science in Information Technology student at <strong>Kirinyaga University</strong> in Kenya (Expected Graduation: <strong>2028</strong>).
+                </p>
+                <p class="text-light opacity-90 mb-3" style="line-height: 1.7;">
+                    My passion lies at the intersection of practical software development, dependable systems architecture, and IT support. I enjoy transforming real-world administrative and community challenges into functional, clean, and accessible web solutions using Python, Django, and modern web standards.
+                </p>
+                <p class="text-light opacity-90 mb-4" style="line-height: 1.7;">
+                    During my 13-week industrial attachment at the <strong class="text-white">ICT Authority of Kenya</strong>, I had the privilege of working on mission-critical projects including the <em class="text-white">Library Management System</em>, <em class="text-white">ICT Asset Management System</em>, and <em class="text-white">GBV / Digital Safe Space System</em>, alongside day-to-day user support and network maintenance.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'experience' %}" class="btn btn-outline-custom">
+                        <i class="fas fa-briefcase me-2"></i> ICT Experience
+                    </a>
+                    <a href="{% url 'skills' %}" class="btn btn-secondary-custom">
+                        <i class="fas fa-tools me-2"></i> Tech Skills
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 shadow-lg">
+                    <h4 class="text-white fw-bold mb-4 pb-2 border-bottom border-secondary border-opacity-25">
+                        <i class="fas fa-id-card text-primary me-2"></i> Quick Facts
+                    </h4>
+                    <ul class="list-unstyled d-flex flex-column gap-3 text-secondary mb-0">
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Official Full Name:</span>
+                            <span class="text-light">Pavis Mugo Muruga</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">University:</span>
+                            <span class="text-light">Kirinyaga University</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Degree Course:</span>
+                            <span class="text-light">BSc in Information Technology</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Current Academic Level:</span>
+                            <span class="text-primary fw-bold">Year 2</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Expected Graduation:</span>
+                            <span class="text-primary fw-bold">2028</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Industrial Attachment:</span>
+                            <span class="text-light">ICT Authority of Kenya (13 Weeks)</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Location:</span>
+                            <span class="text-light">Kenya</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span class="text-white fw-semibold">Primary Focus:</span>
+                            <span class="badge bg-primary-subtle text-primary">Python, Django, IT Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. EDUCATION & ACADEMIC FOCUS -->
+<section class="section-padding bg-card-subtle" id="education">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Academic Background</span>
+            <h2 class="section-title text-white">Higher Education</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Structured academic training in software engineering, networking, data structures, and database administration.
+            </p>
+        </div>
+
+        {% for edu in education_list %}
+        <div class="glass-card p-4 p-md-5 rounded-4 shadow-sm mb-4 mx-auto" style="max-width: 900px;">
+            <div class="row align-items-center g-4">
+                <div class="col-md-3 text-center">
+                    <div class="edu-icon-badge bg-primary-subtle text-primary p-4 rounded-circle d-inline-flex mb-2">
+                        <i class="fas fa-university fs-1"></i>
+                    </div>
+                    <span class="badge bg-primary text-white d-block mt-2 py-2">{{ edu.level }} &bull; Current</span>
+                </div>
+                <div class="col-md-9">
+                    <h3 class="text-white fw-bold fs-4 mb-1">{{ edu.course }}</h3>
+                    <h5 class="text-primary fw-semibold mb-3">{{ edu.institution }}</h5>
+                    <p class="text-secondary mb-3">
+                        {{ edu.description }}
+                    </p>
+                    <div class="mb-3">
+                        <strong class="text-light small d-block mb-1">Key Curriculum Areas:</strong>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for area in edu.get_areas_list %}
+                            <span class="badge bg-dark-subtle text-light border border-secondary">{{ area }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center text-muted small border-top border-secondary pt-3">
+                        <span><i class="fas fa-calendar-alt me-1"></i> Period: {{ edu.start_date }} – {{ edu.end_date }}</span>
+                        <span><i class="fas fa-map-marker-alt me-1"></i> Kenya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- 3. VALUES & PRINCIPLES -->
+<section class="section-padding" id="values">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Work Ethic</span>
+            <h2 class="section-title text-white">Values &amp; Principles</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                The core tenets that guide my software development approach and professional conduct.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card h-100 p-4 rounded-4 text-center">
+                    <div class="feature-icon-box bg-primary-subtle text-primary p-3 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-shield-alt fs-3"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Integrity &amp; Security</h5>
+                    <p class="text-muted small mb-0">
+                        Writing secure code, respecting user privacy, preserving data confidentiality, and maintaining honest communication.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card h-100 p-4 rounded-4 text-center">
+                    <div class="feature-icon-box bg-info-subtle text-info p-3 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-brain fs-3"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Continuous Learning</h5>
+                    <p class="text-muted small mb-0">
+                        Consistently practicing new frameworks, reading technical documentation, and welcoming constructive supervisor feedback.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card h-100 p-4 rounded-4 text-center">
+                    <div class="feature-icon-box bg-warning-subtle text-warning p-3 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-users fs-3"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Teamwork &amp; Collaboration</h5>
+                    <p class="text-muted small mb-0">
+                        Collaborating effectively within engineering teams, assisting non-technical users with empathy, and sharing knowledge.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card h-100 p-4 rounded-4 text-center">
+                    <div class="feature-icon-box bg-success-subtle text-success p-3 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-universal-access fs-3"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-2">Inclusivity &amp; Quality</h5>
+                    <p class="text-muted small mb-0">
+                        Building accessible, responsive interfaces that cater to diverse users with adherence to standard accessibility best practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. CAREER GOALS -->
+<section class="section-padding bg-card-subtle" id="goals">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Aspiration</span>
+            <h2 class="section-title text-white">Career Objectives</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Structured roadmap driving my software engineering growth and academic milestones.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for goal in goals %}
+            <div class="col-md-4">
+                <div class="glass-card h-100 p-4 rounded-4 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-primary text-white text-uppercase">{{ goal.get_timeframe_display }}</span>
+                        <span class="text-muted small">{{ goal.status|default:'Active' }}</span>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">{{ goal.title }}</h4>
+                    <p class="text-secondary small flex-grow-1 mb-3">{{ goal.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 5. FULL CURRENTLY LEARNING TOPICS -->
+<section class="section-padding" id="learning">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Knowledge Expansion</span>
+            <h2 class="section-title text-white">Currently Learning</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Active skill-building pursuits and technical technologies I am mastering.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for topic in learning_topics %}
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card p-4 rounded-4 h-100 d-flex flex-column">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-primary-subtle text-primary p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="{{ topic.icon|default:'fas fa-code' }} fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white fw-bold mb-0">{{ topic.name }}</h5>
+                            <span class="badge bg-success-subtle text-success small">In Progress</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 small mb-0 flex-grow-1" style="line-height: 1.6;">{{ topic.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 6. PROFESSIONAL TIMELINE -->
+<section class="section-padding bg-card-subtle" id="timeline">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Milestones</span>
+            <h2 class="section-title text-white">My Academic &amp; Tech Journey</h2>
+        </div>
+
+        <div class="timeline-wrapper mx-auto" style="max-width: 800px;">
+            {% for event in timeline_events %}
+            <div class="timeline-item position-relative ps-4 pb-4 border-start border-2 border-primary">
+                <div class="timeline-dot position-absolute top-0 start-0 translate-middle bg-primary rounded-circle" style="width: 16px; height: 16px;"></div>
+                <div class="glass-card p-4 rounded-4">
+                    <span class="badge bg-primary-subtle text-primary mb-2">{{ event.year }} &bull; {{ event.category|title }}</span>
+                    <h5 class="text-white fw-bold mb-1">{{ event.title }}</h5>
+                    <p class="text-secondary small mb-0">{{ event.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

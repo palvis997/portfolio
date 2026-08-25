@@ -1,0 +1,66 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- BLOG PREVIEW SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="blog-preview">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-blog me-2"></i>Blog</span>
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">Sharing thoughts, experiences, and knowledge about technology and development.</p>
+        </div>
+
+        {% if blog_posts %}
+        <div class="row g-4">
+            {% for post in blog_posts %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="blog-card glass-card">
+                    {% if post.featured_image %}
+                    <div class="blog-card-image">
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy">
+                        {% if post.category %}
+                        <span class="blog-card-category">{{ post.category }}</span>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="blog-card-image-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                        {% if post.category %}
+                        <span class="blog-card-category">{{ post.category }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="fas fa-calendar me-1"></i> {{ post.created_at|date:"M d, Y" }}</span>
+                            <span><i class="fas fa-clock me-1"></i> {{ post.reading_time }} min read</span>
+                        </div>
+                        <h4 class="blog-card-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h4>
+                        <p class="blog-card-excerpt">{{ post.excerpt|default:post.content|truncatewords:20 }}</p>
+                        <a href="{{ post.get_absolute_url }}" class="blog-card-link">
+                            Read More <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5 animate-on-scroll" data-animation="fade-in">
+            <a href="{% url 'blog_list' %}" class="btn btn-outline-custom btn-lg">
+                <i class="fas fa-newspaper me-2"></i> View All Posts
+            </a>
+        </div>
+        {% else %}
+        <div class="text-center animate-on-scroll" data-animation="fade-in">
+            <div class="empty-state glass-card">
+                <i class="fas fa-pen-fancy empty-state-icon"></i>
+                <h4>Blog posts coming soon!</h4>
+                <p>I'll be sharing insights about web development, Python, Django, and my tech journey.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

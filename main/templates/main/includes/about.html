@@ -1,0 +1,140 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- ABOUT SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="about">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-user me-2"></i>About Me</span>
+            <h2 class="section-title">Who I Am & What Drives Me</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="row g-5 align-items-start">
+            <!-- Bio Text -->
+            <div class="col-lg-7 animate-on-scroll" data-animation="slide-up">
+                <div class="about-text">
+                    <p class="about-lead">
+                        I am an <strong>Information Technology student</strong> at Kirinyaga University with practical industrial experience, dedicated to developing dependable software solutions with Python and Django.
+                    </p>
+                    <p>
+                        {{ site.bio|default:"I am currently in Year 2 pursuing a Bachelor of Science in Information Technology at Kirinyaga University (Expected Graduation: 2028). My journey in technology combines classroom computer science fundamentals with verified industry practice gained during a 13-week industrial attachment at the ICT Authority of Kenya (4 May 2026 – 31 July 2026)." }}
+                    </p>
+                    <p>
+                        During my attachment at the ICT Authority, I actively participated in building key software systems—including the <strong>Library Management System</strong>, the <strong>ICT Asset Management System</strong>, and the <strong>GBV System</strong>—as well as performing technical ICT support, database modeling, and troubleshooting across departments.
+                    </p>
+                    <p>
+                        I focus on writing clean, modular Python and Django code, understanding database relationships, and applying structured problem-solving to every challenge I undertake.
+                    </p>
+
+                    <div class="about-highlights mt-4">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>13-week verified Industrial Attachment at the ICT Authority of Kenya</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Hands-on Python & Django software and system development</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Data Capturing, database management, and record accuracy</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Methodical ICT support, hardware diagnostics, and network troubleshooting</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="{% url 'cv_view' %}" class="btn btn-primary-custom">
+                            <i class="fas fa-file-alt me-2"></i> View Verified CV
+                        </a>
+                        {% if site.resume %}
+                        <a href="{{ site.resume.url }}" class="btn btn-outline-custom" download>
+                            <i class="fas fa-download me-2"></i> Download Resume (PDF)
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="col-lg-5 animate-on-scroll" data-animation="slide-up">
+                <div class="about-card glass-card">
+                    <div class="about-card-header">
+                        <div class="about-card-avatar">
+                            {% if site.profile_image %}
+                            <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" loading="lazy">
+                            {% else %}
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <h3 class="about-card-name">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h3>
+                        <p class="about-card-role">IT Student | Python & Django Developer</p>
+                    </div>
+
+                    <div class="about-card-body">
+                        <div class="about-card-item">
+                            <i class="fas fa-university"></i>
+                            <div>
+                                <small>University</small>
+                                <span>Kirinyaga University</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <small>Degree Programme</small>
+                                <span>BSc. Information Technology</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-layer-group"></i>
+                            <div>
+                                <small>Current Academic Level</small>
+                                <span>Year 2 (Expected Grad: 2028)</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <small>Industrial Attachment</small>
+                                <span>ICT Authority of Kenya (13 Weeks)</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <small>Core Development Focus</small>
+                                <span>Python, Django & Systems</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <small>Email Address</small>
+                                <span>{{ site.email|default:"palvismugo06@gmail.com" }}</span>
+                            </div>
+                        </div>
+                        <div class="about-card-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <small>Phone Contact</small>
+                                <span>{{ site.phone|default:"0711652479" }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card-footer">
+                        <a href="{% url 'cv_view' %}" class="btn btn-primary-custom w-100">
+                            <i class="fas fa-file-pdf me-2"></i> View & Print CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

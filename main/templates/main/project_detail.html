@@ -1,0 +1,313 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} — Case Study | {{ site.full_name|default:"Pavis Mugo Muruga" }}{% endblock %}
+
+{% block meta_description %}{{ project.short_description|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+<section class="section-padding project-detail-header">
+    <div class="container">
+        <!-- Breadcrumb navigation -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="fas fa-home me-1"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'projects' %}">Projects</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                    <span class="badge {{ project.status_badge_class }}">{{ project.get_status_display }}</span>
+                    <span class="project-category-badge">{{ project.get_category_display }}</span>
+                    {% if project.role %}
+                    <span class="badge bg-secondary-custom"><i class="fas fa-user-tag me-1 text-accent"></i> {{ project.role }}</span>
+                    {% endif %}
+                </div>
+                <h1 class="project-detail-title">{{ project.title }}</h1>
+                <p class="project-detail-lead">{{ project.short_description }}</p>
+                
+                <div class="project-detail-meta d-flex flex-wrap gap-3 mt-4">
+                    {% if project.technologies %}
+                    <div class="meta-item">
+                        <small><i class="fas fa-microchip me-1 text-accent"></i> Technologies Used</small>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            {% for tech in project.get_technologies_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+                <div class="d-flex flex-column flex-sm-row flex-lg-column gap-2 justify-content-lg-end">
+                    {% if project.live_url %}
+                    <a href="{{ project.live_url }}" class="btn btn-primary-custom btn-lg" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt me-2"></i> Live Demo
+                    </a>
+                    {% endif %}
+
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" class="btn btn-outline-custom btn-lg" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github me-2"></i> VIEW ON GITHUB
+                    </a>
+                    {% endif %}
+
+                    <a href="{% url 'resume' %}" class="btn btn-secondary-custom">
+                        <i class="fas fa-file-alt me-1"></i> View Pavis Mugo Muruga's Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Project Showcase / Image -->
+<section class="pb-5">
+    <div class="container">
+        <div class="project-hero-media glass-card p-2 p-md-3">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid rounded-4 w-100 project-banner-img">
+            {% else %}
+            <div class="project-banner-placeholder text-center py-5">
+                <i class="fas fa-layer-group display-1 text-accent mb-3"></i>
+                <h3>{{ project.title }} Showcase</h3>
+                <p class="text-muted">Featured application architecture & user workflow preview</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Case Study Breakdown -->
+<section class="section-padding pt-0">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left content column -->
+            <div class="col-lg-8">
+                <!-- Project Overview -->
+                <div class="case-study-card glass-card p-4 p-md-5 mb-4">
+                    <h2 class="case-study-heading"><i class="fas fa-info-circle me-2 text-accent"></i> Project Overview</h2>
+                    <p class="case-study-text">
+                        {% if project.overview %}
+                            {{ project.overview|linebreaks }}
+                        {% else %}
+                            {{ project.short_description }}
+                        {% endif %}
+                    </p>
+                </div>
+
+                <!-- Problem & Solution Grid -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <div class="case-study-card glass-card p-4 h-100">
+                            <h3 class="case-study-subheading text-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i> The Problem
+                            </h3>
+                            <p class="case-study-text">
+                                {% if project.problem %}
+                                    {{ project.problem|linebreaks }}
+                                {% else %}
+                                    Organizations and end-users often face inefficiencies, security challenges, or lack of centralized management in traditional workflows.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="case-study-card glass-card p-4 h-100">
+                            <h3 class="case-study-subheading text-success">
+                                <i class="fas fa-check-circle me-2"></i> The Solution
+                            </h3>
+                            <p class="case-study-text">
+                                {% if project.solution %}
+                                    {{ project.solution|linebreaks }}
+                                {% else %}
+                                    Engineered a robust, modular web solution incorporating secure user authentication, optimized relational databases, responsive interface controls, and structured role-based access.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Features -->
+                <div class="case-study-card glass-card p-4 p-md-5 mb-4">
+                    <h2 class="case-study-heading"><i class="fas fa-star me-2 text-accent"></i> Key Features & Capabilities</h2>
+                    {% if project.get_features_list %}
+                    <ul class="case-study-features">
+                        {% for feature in project.get_features_list %}
+                        <li>
+                            <i class="fas fa-check text-accent me-2"></i>
+                            <span>{{ feature }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <ul class="case-study-features">
+                        <li><i class="fas fa-check text-accent me-2"></i> Intuitive and mobile-responsive user interface</li>
+                        <li><i class="fas fa-check text-accent me-2"></i> Comprehensive CRUD operations and searchable datasets</li>
+                        <li><i class="fas fa-check text-accent me-2"></i> Role-based access control and secure session handling</li>
+                        <li><i class="fas fa-check text-accent me-2"></i> Optimized database queries and schema relations</li>
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Development Process & Architecture -->
+                <div class="case-study-card glass-card p-4 p-md-5 mb-4">
+                    <h2 class="case-study-heading"><i class="fas fa-cogs me-2 text-accent"></i> Development Process</h2>
+                    <p class="case-study-text">
+                        {% if project.development_process %}
+                            {{ project.development_process|linebreaks }}
+                        {% else %}
+                            The development life cycle followed an agile approach: requirements gathering, database modeling with Django ORM, RESTful and template view structuring, Bootstrap-based responsive styling, and comprehensive unit/manual verification.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <!-- Challenges & Lessons Learned -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <div class="case-study-card glass-card p-4 h-100">
+                            <h3 class="case-study-subheading">
+                                <i class="fas fa-wrench me-2 text-warning"></i> Challenges Faced
+                            </h3>
+                            <p class="case-study-text">
+                                {% if project.challenges %}
+                                    {{ project.challenges|linebreaks }}
+                                {% else %}
+                                    Balancing complex database joins with query response speed, managing edge-case validations, and crafting seamless cross-device mobile layouts.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="case-study-card glass-card p-4 h-100">
+                            <h3 class="case-study-subheading">
+                                <i class="fas fa-lightbulb me-2 text-info"></i> Lessons Learned
+                            </h3>
+                            <p class="case-study-text">
+                                {% if project.lessons_learned %}
+                                    {{ project.lessons_learned|linebreaks }}
+                                {% else %}
+                                    Deepened expertise in Django ORM indexing, modular component breakdown, state persistence, and implementing defensive security controls against XSS/CSRF.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screenshots Gallery -->
+                {% with ss_list=project.screenshots.all %}
+                {% if project.screenshot_1 or project.screenshot_2 or project.screenshot_3 or ss_list %}
+                <div class="case-study-card glass-card p-4 p-md-5 mb-4">
+                    <h2 class="case-study-heading mb-4"><i class="fas fa-images me-2 text-accent"></i> Project Screenshots</h2>
+                    <div class="row g-3">
+
+                        <!-- Quick screenshots (screenshot_1 / 2 / 3 fields) -->
+                        {% if project.screenshot_1 %}
+                        <div class="col-md-6">
+                            <a href="{{ project.screenshot_1.url }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ project.screenshot_1.url }}" alt="{{ project.title }} — screenshot 1" class="img-fluid rounded-3 project-gallery-img" loading="lazy">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if project.screenshot_2 %}
+                        <div class="col-md-6">
+                            <a href="{{ project.screenshot_2.url }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ project.screenshot_2.url }}" alt="{{ project.title }} — screenshot 2" class="img-fluid rounded-3 project-gallery-img" loading="lazy">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if project.screenshot_3 %}
+                        <div class="col-md-6">
+                            <a href="{{ project.screenshot_3.url }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ project.screenshot_3.url }}" alt="{{ project.title }} — screenshot 3" class="img-fluid rounded-3 project-gallery-img" loading="lazy">
+                            </a>
+                        </div>
+                        {% endif %}
+
+                        <!-- Extended gallery screenshots (ProjectScreenshot model) -->
+                        {% for shot in ss_list %}
+                        <div class="col-md-6">
+                            <a href="{{ shot.image.url }}" target="_blank" rel="noopener noreferrer" title="{% if shot.caption %}{{ shot.caption }}{% else %}{{ project.title }} screenshot{% endif %}">
+                                <img src="{{ shot.image.url }}"
+                                     alt="{% if shot.alt_text %}{{ shot.alt_text }}{% else %}{{ project.title }} screenshot {{ forloop.counter }}{% endif %}"
+                                     class="img-fluid rounded-3 project-gallery-img" loading="lazy">
+                            </a>
+                            {% if shot.caption %}
+                            <p class="text-muted small text-center mt-1 mb-0">{{ shot.caption }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <!-- Results & Impact -->
+                {% if project.results %}
+                <div class="case-study-card glass-card p-4 p-md-5">
+                    <h2 class="case-study-heading"><i class="fas fa-chart-line me-2 text-accent"></i> Results & Impact</h2>
+                    <p class="case-study-text">{{ project.results|linebreaks }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-sidebar">
+                    <!-- Project Info Card -->
+                    <div class="glass-card p-4 mb-4">
+                        <h4 class="sidebar-card-title mb-3">Project Details</h4>
+                        <ul class="sidebar-details-list">
+                            <li>
+                                <span class="label">Category:</span>
+                                <span class="val">{{ project.get_category_display }}</span>
+                            </li>
+                            <li>
+                                <span class="label">Developer:</span>
+                                <span class="val">{{ site.full_name|default:"Pavis Mugo Muruga" }}</span>
+                            </li>
+                            <li>
+                                <span class="label">Primary Stack:</span>
+                                <span class="val">Python &amp; Django</span>
+                            </li>
+                            <li>
+                                <span class="label">Status:</span>
+                                <span class="val"><span class="badge {{ project.status_badge_class }}">{{ project.status_display_with_icon }}</span></span>
+                            </li>
+                        </ul>
+                        
+                        <hr class="sidebar-divider">
+                        
+                        <h5 class="sidebar-card-title fs-6 mb-3">Need a similar project?</h5>
+                        <p class="small text-muted">Let's discuss how we can build custom digital systems for your specific operational requirements.</p>
+                        <a href="{% url 'contact' %}" class="btn btn-primary-custom w-100">
+                            <i class="fas fa-paper-plane me-2"></i> Get In Touch
+                        </a>
+                    </div>
+
+                    <!-- Related Projects -->
+                    {% if related_projects %}
+                    <div class="glass-card p-4">
+                        <h4 class="sidebar-card-title mb-3">Related Projects</h4>
+                        <div class="d-flex flex-column gap-3">
+                            {% for rel in related_projects %}
+                            <a href="{{ rel.get_absolute_url }}" class="related-project-item">
+                                <h6 class="mb-1 text-accent">{{ rel.title }}</h6>
+                                <p class="small text-muted mb-0">{{ rel.short_description|truncatewords:10 }}</p>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

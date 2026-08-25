@@ -1,0 +1,172 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Blog & Articles — {{ site.full_name|default:"Pavis Mugo Muruga" }}{% endblock %}
+{% block meta_description %}Read insightful articles on web development, Python, Django, IT systems, database architecture, and technology by Pavis Mugo Muruga.{% endblock %}
+
+{% block content %}
+<section class="section-padding blog-header-section">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="fas fa-home me-1"></i> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+
+        <div class="section-header text-center mb-5">
+            <span class="section-tag"><i class="fas fa-newspaper me-2"></i>Articles & Insights</span>
+            <h1 class="section-title">Knowledge Hub & Blog</h1>
+            <div class="section-line mx-auto"></div>
+            <p class="section-subtitle">Exploring Python, Django, database systems, architecture patterns, and lessons learned on my tech journey.</p>
+        </div>
+
+        <div class="row g-5">
+            <!-- Main Content Area -->
+            <div class="col-lg-8">
+                <!-- Search bar for mobile / main -->
+                <div class="blog-search-card glass-card p-3 mb-4">
+                    <form method="GET" action="{% url 'blog_list' %}" class="d-flex gap-2">
+                        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search articles by title, content, or tags...">
+                        {% if current_category %}
+                        <input type="hidden" name="category" value="{{ current_category }}">
+                        {% endif %}
+                        <button type="submit" class="btn btn-primary-custom px-4">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+                {% if query or current_category or current_tag %}
+                <div class="active-filters mb-4 d-flex align-items-center flex-wrap gap-2">
+                    <span class="text-muted small">Filtering by:</span>
+                    {% if query %}
+                    <span class="badge bg-secondary p-2">Query: "{{ query }}"</span>
+                    {% endif %}
+                    {% if current_category %}
+                    <span class="badge bg-primary p-2">Category: {{ current_category }}</span>
+                    {% endif %}
+                    {% if current_tag %}
+                    <span class="badge bg-info text-dark p-2">Tag: #{{ current_tag }}</span>
+                    {% endif %}
+                    <a href="{% url 'blog_list' %}" class="btn btn-sm btn-outline-danger ms-auto">
+                        <i class="fas fa-times me-1"></i> Clear Filters
+                    </a>
+                </div>
+                {% endif %}
+
+                <!-- Blog Posts List -->
+                {% if posts %}
+                <div class="row g-4">
+                    {% for post in posts %}
+                    <div class="col-md-6">
+                        <article class="blog-card glass-card h-100 d-flex flex-column">
+                            {% if post.featured_image %}
+                            <div class="blog-card-image">
+                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy">
+                                {% if post.category %}
+                                <span class="blog-card-category">{{ post.category }}</span>
+                                {% endif %}
+                            </div>
+                            {% else %}
+                            <div class="blog-card-image-placeholder">
+                                <i class="fas fa-code display-4 text-accent"></i>
+                                {% if post.category %}
+                                <span class="blog-card-category">{{ post.category }}</span>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+
+                            <div class="blog-card-content p-4 d-flex flex-column flex-grow-1">
+                                <div class="blog-card-meta mb-2">
+                                    <span><i class="fas fa-calendar-alt me-1"></i> {{ post.created_at|date:"M d, Y" }}</span>
+                                    <span><i class="fas fa-clock me-1"></i> {{ post.reading_time }} min read</span>
+                                </div>
+
+                                <h3 class="blog-card-title fs-5 mb-2">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h3>
+
+                                <p class="blog-card-excerpt text-muted small flex-grow-1">
+                                    {{ post.excerpt|default:post.content|truncatewords:22 }}
+                                </p>
+
+                                {% if post.get_tags_list %}
+                                <div class="blog-tags d-flex flex-wrap gap-1 mb-3">
+                                    {% for t in post.get_tags_list %}
+                                    <a href="{% url 'blog_list' %}?tag={{ t }}" class="badge-tag">#{{ t }}</a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <div class="mt-auto pt-2 border-top border-secondary-subtle d-flex justify-content-between align-items-center">
+                                    <span class="small text-muted"><i class="fas fa-user-circle me-1"></i> {{ post.author }}</span>
+                                    <a href="{{ post.get_absolute_url }}" class="blog-card-link text-accent fw-bold small">
+                                        Read Article <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state glass-card text-center p-5">
+                    <i class="fas fa-newspaper display-3 text-muted mb-3"></i>
+                    <h4>No articles found</h4>
+                    <p class="text-muted">No posts matched your current search parameters. Try searching for something else or explore all topics.</p>
+                    <a href="{% url 'blog_list' %}" class="btn btn-primary-custom mt-2">Browse All Articles</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="blog-sidebar sticky-sidebar d-flex flex-column gap-4">
+                    <!-- Author Profile Widget -->
+                    <div class="glass-card p-4 text-center">
+                        <div class="avatar-sm mx-auto mb-3">
+                            <i class="fas fa-user-tie fa-2x text-accent"></i>
+                        </div>
+                        <h5 class="mb-1">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h5>
+                        <p class="small text-muted mb-3">{{ site.profession|default:"IT Student & Web Developer" }}</p>
+                        <p class="small text-muted">Writing about modern web tools, backend architectures, database schemas, and IT engineering solutions.</p>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    {% if categories %}
+                    <div class="glass-card p-4">
+                        <h5 class="sidebar-card-title mb-3"><i class="fas fa-folder-open me-2 text-accent"></i> Categories</h5>
+                        <ul class="list-unstyled category-list mb-0">
+                            {% for cat in categories %}
+                            <li>
+                                <a href="{% url 'blog_list' %}?category={{ cat }}" class="category-link d-flex justify-content-between align-items-center {% if current_category == cat %}active{% endif %}">
+                                    <span>{{ cat }}</span>
+                                    <i class="fas fa-chevron-right small text-muted"></i>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <!-- Tags Widget -->
+                    {% if all_tags %}
+                    <div class="glass-card p-4">
+                        <h5 class="sidebar-card-title mb-3"><i class="fas fa-tags me-2 text-accent"></i> Explore Tags</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for t in all_tags %}
+                            <a href="{% url 'blog_list' %}?tag={{ t }}" class="badge-tag {% if current_tag == t %}active-tag{% endif %}">
+                                #{{ t }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

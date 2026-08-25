@@ -1,0 +1,224 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Curriculum Vitae — {{ site.full_name|default:"Pavis Mugo Muruga" }} | IT Student & Django Developer{% endblock %}
+
+{% block meta_description %}Official Curriculum Vitae of Pavis Mugo Muruga — Information Technology Student at Kirinyaga University, Python & Django Developer, and IT Support with ICT Authority experience.{% endblock %}
+
+{% block content %}
+<div class="cv-page-wrapper section-padding">
+    <div class="container">
+        <!-- Top Toolbar -->
+        <div class="cv-toolbar d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 no-print">
+            <a href="{% url 'home' %}" class="btn btn-outline-custom">
+                <i class="fas fa-arrow-left me-2"></i> Back to Portfolio
+            </a>
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-primary-custom" onclick="window.print();">
+                    <i class="fas fa-print me-2"></i> Print / Save as PDF
+                </button>
+                {% if site.resume %}
+                <a href="{{ site.resume.url }}" class="btn btn-accent-custom" download>
+                    <i class="fas fa-download me-2"></i> Download Uploaded Resume
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- CV Paper Container -->
+        <div class="cv-paper glass-card p-4 p-md-5">
+            <!-- Header -->
+            <header class="cv-header border-bottom pb-4 mb-4">
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-8">
+                        <h1 class="cv-name text-accent mb-1">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h1>
+                        <p class="cv-title fs-5 text-muted mb-2">
+                            {{ site.profession|default:"Information Technology Student | Python & Django Developer | IT Support" }}
+                        </p>
+                        <p class="small text-muted mb-0">
+                            <i class="fas fa-university me-1"></i> Kirinyaga University (Year 2 &bull; Expected Graduation: 2028)
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="cv-contact-info small">
+                            <p class="mb-1"><i class="fas fa-envelope text-accent me-2"></i> <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}">{{ site.email|default:"palvismugo06@gmail.com" }}</a></p>
+                            <p class="mb-1"><i class="fas fa-phone text-accent me-2"></i> <a href="tel:{{ site.phone|default:'0711652479' }}">{{ site.phone|default:"0711652479" }}</a></p>
+                            <p class="mb-1"><i class="fab fa-github text-accent me-2"></i> <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" target="_blank" rel="noopener">github.com/{{ site.github_username|default:"palvis997" }}</a></p>
+                            <p class="mb-0"><i class="fas fa-map-marker-alt text-accent me-2"></i> {{ site.location|default:"Kenya" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Professional Profile -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-user text-accent me-2"></i> Professional Profile</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <p class="cv-text">
+                    Dedicated and motivated Information Technology student at Kirinyaga University in Year 2 pursuing a Bachelor of Science in Information Technology (Expected Graduation: 2028). Possesses hands-on industrial attachment experience gained at the ICT Authority of Kenya (4 May 2026 – 31 July 2026), contributing to software development in Python and Django, database modeling, and comprehensive ICT support services. Skilled in clean code practices, data capturing and management, technical troubleshooting, and collaborative problem solving.
+                </p>
+            </section>
+
+            <!-- Education -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-graduation-cap text-accent me-2"></i> Education</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="cv-item mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start">
+                        <div>
+                            <h5 class="mb-0">Bachelor of Science in Information Technology</h5>
+                            <span class="text-accent">Kirinyaga University</span>
+                        </div>
+                        <span class="badge bg-secondary-custom">Year 2 &bull; Expected Graduation: 2028</span>
+                    </div>
+                    <p class="small text-muted mt-2 mb-1">
+                        <strong>Core Study Areas:</strong> Python Programming, Web Application Development, Database Systems & Management, Computer Networking, System Administration, Information Systems, Data Structures, Cybersecurity Fundamentals.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Industrial Attachment Experience -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-briefcase text-accent me-2"></i> Verified Industrial Attachment Experience</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="cv-item mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start">
+                        <div>
+                            <h5 class="mb-0">Industrial Attachment Student</h5>
+                            <span class="text-accent fw-bold">ICT Authority of Kenya</span>
+                            <small class="text-muted d-block">(State Corporation under Kenya State Corporations Act 446)</small>
+                        </div>
+                        <span class="badge bg-secondary-custom">4 May 2026 – 31 July 2026 (13 Weeks)</span>
+                    </div>
+                    <p class="mt-2 mb-2">
+                        Completed an intensive 13-week industrial attachment gaining practical experience in software development, database workflows, problem solving, teamwork, and technical ICT support services.
+                    </p>
+                    <ul class="cv-bullets mb-0">
+                        <li><strong>Software Development:</strong> Built and contributed to full-stack Django applications, including data modeling, form validation, and responsive interfaces.</li>
+                        <li><strong>Systems Worked On:</strong>
+                            <ul>
+                                <li><em>Library Management System:</em> Book cataloging, availability queries, borrowing records, and search indexing.</li>
+                                <li><em>ICT Asset Management System:</em> Hardware registration, assignment workflows, and maintenance tracking logs.</li>
+                                <li><em>GBV System:</em> Confidential incident reporting workflows, unique tracking identifiers, and caseworker triage views.</li>
+                            </ul>
+                        </li>
+                        <li><strong>ICT Support Services:</strong> Performed diagnostic troubleshooting for hardware peripherals, operating system configurations, software updates, and local network connectivity issues across institutional departments.</li>
+                        <li><strong>Database Work:</strong> Designed relational models and queries in SQLite and PostgreSQL with strict referential integrity.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Technical & Data Capturing Skills -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-tools text-accent me-2"></i> Technical & Data Management Skills</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="text-accent mb-2"><i class="fas fa-code me-1"></i> Software & Web Development</h6>
+                            <ul class="small mb-0 ps-3">
+                                <li><strong>Languages:</strong> Python, JavaScript (ES6+), HTML5, CSS3</li>
+                                <li><strong>Frameworks:</strong> Django, Bootstrap 5</li>
+                                <li><strong>Databases:</strong> SQLite, PostgreSQL, Relational Database Design</li>
+                                <li><strong>Tools:</strong> Git, GitHub, VS Code, WhiteNoise</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="text-accent mb-2"><i class="fas fa-keyboard me-1"></i> Data Capturing & Information Management</h6>
+                            <ul class="small mb-0 ps-3">
+                                <li>Data Capturing & Data Entry</li>
+                                <li>Data Organization & Accuracy Verification</li>
+                                <li>Information Management & Record Administration</li>
+                                <li>Digital Record Archiving & Integrity Controls</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-3 bg-secondary-custom rounded-3">
+                            <h6 class="text-accent mb-2"><i class="fas fa-headset me-1"></i> IT Support & Systems</h6>
+                            <p class="small mb-0">
+                                Hardware Troubleshooting, Software Installation & Diagnostics, Computer Networking, Operating Systems Support (Windows / Linux), System Maintenance, Problem Solving.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-project-diagram text-accent me-2"></i> Practical Projects</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="mb-1 text-accent">ICT Asset Management System</h6>
+                            <small class="text-muted d-block mb-1">Python, Django, Bootstrap 5, PostgreSQL, SQLite</small>
+                            <p class="small mb-0">Web platform for registering, assigning, and tracking ICT assets and maintenance schedules across organizations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="mb-1 text-accent">Library Management System</h6>
+                            <small class="text-muted d-block mb-1">Python, Django, SQLite, Bootstrap, HTML5/CSS3</small>
+                            <p class="small mb-0">Digital system managing book cataloging, availability records, member loans, and return tracking.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="mb-1 text-accent">GBV System</h6>
+                            <small class="text-muted d-block mb-1">Python, Django, Bootstrap 5, JavaScript</small>
+                            <p class="small mb-0">Confidential incident reporting platform with unique tracking identifiers and authorized caseworker triage views.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-secondary-custom rounded-3 h-100">
+                            <h6 class="mb-1 text-accent">Interactive Job Portal</h6>
+                            <small class="text-muted d-block mb-1">Python, Django, JavaScript, Bootstrap 5</small>
+                            <p class="small mb-0">Employment board featuring seeker/employer authentication, job postings, resume uploads, and application tracking.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Professional Strengths -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-medal text-accent me-2"></i> Professional Strengths</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="row g-2 small">
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>Strong problem-solving & analytical abilities</div>
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>Enthusiasm and dedication to quality work</div>
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>High adaptability and rapid learning capacity</div>
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>Collaborative team player & effective communicator</div>
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>Methodical troubleshooting and attention to detail</div>
+                    <div class="col-sm-6"><i class="fas fa-check text-accent me-2"></i>Focus on clean, structured code and maintainability</div>
+                </div>
+            </section>
+
+            <!-- Career Objective -->
+            <section class="cv-section mb-4">
+                <h3 class="cv-section-title"><i class="fas fa-bullseye text-accent me-2"></i> Career Objective</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <p class="cv-text mb-0">
+                    To leverage solid academic foundation in Information Technology from Kirinyaga University and practical experience from the ICT Authority of Kenya in Python, Django, database design, and IT support to build impactful digital solutions and grow into an accomplished software engineer.
+                </p>
+            </section>
+
+            <!-- References -->
+            <section class="cv-section">
+                <h3 class="cv-section-title"><i class="fas fa-stamp text-accent me-2"></i> Professional References</h3>
+                <div class="section-divider-sm mb-3"></div>
+                <div class="p-3 bg-secondary-custom rounded-3">
+                    <h6 class="mb-1 text-accent">Scholastica Mutuku</h6>
+                    <p class="small mb-1"><strong>Software Engineer</strong> &bull; ICT Authority of Kenya</p>
+                    <p class="small text-muted mb-0">
+                        Official Industrial Attachment Supervisor (4 May 2026 – 31 July 2026).<br>
+                        <em>Official recommendation letter available upon request and via portfolio recommendation record.</em>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

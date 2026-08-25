@@ -1,0 +1,341 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Pavis Mugo Muruga | Information Technology Student & Django Developer{% endblock %}
+{% block meta_description %}Portfolio of Pavis Mugo Muruga — BSc IT Student at Kirinyaga University, Python & Django Developer, and ICT Support specialist with industry experience at ICT Authority of Kenya.{% endblock %}
+
+{% block content %}
+
+{# 1. HERO SECTION #}
+{% include 'main/includes/hero.html' %}
+
+{# 2. SHORT ABOUT ME SECTION #}
+<section class="section-padding bg-card-subtle" id="about-preview">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5">
+                <div class="glass-card p-4 rounded-4 position-relative overflow-hidden">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="feature-icon-box bg-primary-subtle text-primary rounded-circle p-3">
+                            <i class="fas fa-user-graduate fs-3"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 text-white fw-bold">Pavis Mugo Muruga</h4>
+                            <span class="text-primary small fw-semibold">Kirinyaga University &bull; Year 2</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 small mb-3">
+                        Pursuing <strong class="text-white">Bachelor of Science in Information Technology</strong> (Expected Graduation: <strong class="text-white">2028</strong>). Industrial Attachment completed at the <strong class="text-white">ICT Authority of Kenya</strong>.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25 px-2.5 py-1.5">Python</span>
+                        <span class="badge bg-info-subtle text-info border border-info border-opacity-25 px-2.5 py-1.5">Django</span>
+                        <span class="badge bg-success-subtle text-success border border-success border-opacity-25 px-2.5 py-1.5">ICT Support</span>
+                        <span class="badge bg-warning-subtle text-warning border border-warning border-opacity-25 px-2.5 py-1.5">Data Capturing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="section-header text-start mb-3">
+                    <span class="section-tag">About Me</span>
+                    <h2 class="section-title text-white">Passionate About Practical Software &amp; ICT Solutions</h2>
+                </div>
+                <p class="lead-text text-light opacity-90 mb-4" style="line-height: 1.7; font-size: 1.05rem;">
+                    I am a Bachelor of Science in Information Technology student at Kirinyaga University with practical experience in Python, Django, ICT support and information systems development. During my industrial attachment at the ICT Authority of Kenya, I participated in developing practical technology solutions including a Library Management System, ICT Asset Management System and GBV System.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'about' %}" class="btn btn-primary-custom">
+                        READ MORE <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="{% url 'resume' %}" class="btn btn-outline-custom">
+                        <i class="fas fa-file-alt me-2"></i> View Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# 3. WHAT I DO (COMPACT CARDS) #}
+<section class="section-padding" id="what-i-do-preview">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Core Competencies</span>
+            <h2 class="section-title text-white">What I Do</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Specialized in building dependable software applications, maintaining infrastructure, and organizing digital records.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fab fa-python text-primary fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">Python &amp; Django Development</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        Designing clean backend architectures, relational ORM data models, secure authentication, and RESTful web applications.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fas fa-code text-info fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">Web Development</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        Creating responsive, mobile-first user interfaces with modern HTML5, CSS3, JavaScript, and Bootstrap 5 design systems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fas fa-cubes text-warning fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">System Development</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        Building full-stack information systems such as asset tracking, incident reporting platforms, and digital library catalogs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fas fa-headset text-success fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">ICT Support &amp; Maintenance</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        Troubleshooting hardware diagnostics, resolving network connectivity, performing operating system updates, and user support.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fas fa-database text-danger fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">Database Management</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        Designing normalized database schemas in SQLite and PostgreSQL with query optimization, indexing, and data integrity.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card glass-card h-100 p-4 rounded-4">
+                    <div class="service-icon-wrapper mb-3">
+                        <i class="fas fa-file-invoice text-secondary fs-2"></i>
+                    </div>
+                    <h4 class="text-white fw-bold fs-5 mb-2">Data Capturing &amp; Entry</h4>
+                    <p class="service-card-desc text-light opacity-90 small mb-0">
+                        High-accuracy data verification, digital record organization, information management, and structured data processing.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'skills' %}" class="btn btn-outline-custom">
+                VIEW ALL SKILLS <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# 4. FEATURED PROJECTS (ONLY 3 CARDS) #}
+<section class="section-padding bg-card-subtle" id="featured-projects">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Featured Work</span>
+            <h2 class="section-title text-white">Featured Projects</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Practical web systems and digital platforms engineered for real-world impact.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card glass-card h-100 d-flex flex-column rounded-4 overflow-hidden">
+                    <div class="project-image-wrapper position-relative">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img" loading="lazy">
+                        {% else %}
+                        <div class="project-img-placeholder d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-laptop-code display-4 text-primary opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="project-status-tag">
+                            <span class="badge {{ project.status_badge_class }}">
+                                {{ project.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="project-body p-4 d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-primary-subtle text-primary small text-uppercase fw-bold">{{ project.get_category_display }}</span>
+                        </div>
+                        <h4 class="project-title text-white fw-bold fs-5 mb-2">{{ project.title }}</h4>
+                        <p class="project-desc text-light opacity-90 small flex-grow-1 mb-3">
+                            {{ project.short_description|truncatewords:20 }}
+                        </p>
+
+                        <!-- Tech tags -->
+                        <div class="project-tech-tags mb-4">
+                            {% for tech in project.get_technologies_list|slice:":4" %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="project-actions d-flex gap-2 pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                            <a href="{% url 'project_detail' project.slug %}" class="btn btn-primary-custom btn-sm flex-grow-1">
+                                <i class="fas fa-info-circle me-1"></i> VIEW PROJECT
+                            </a>
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-outline-custom btn-sm" target="_blank" rel="noopener noreferrer" title="Open Live Deployed Web App in new tab">
+                                <i class="fas fa-external-link-alt me-1"></i> LIVE DEMO
+                            </a>
+                            {% endif %}
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn btn-secondary-custom btn-sm" target="_blank" rel="noopener noreferrer" title="View Source Code on GitHub">
+                                <i class="fab fa-github me-1"></i> GitHub
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'projects' %}" class="btn btn-primary-custom btn-lg">
+                VIEW ALL PROJECTS <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# 5. ICT AUTHORITY EXPERIENCE SUMMARY #}
+<section class="section-padding" id="experience-preview">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="section-tag">Industrial Attachment</span>
+                <h2 class="section-title text-white mb-3">ICT Authority of Kenya</h2>
+                <h5 class="text-primary fw-bold mb-3">
+                    Industrial Attachment Student &bull; 13 Weeks (4 May 2026 – 31 July 2026)
+                </h5>
+                <p class="text-light opacity-90 mb-4">
+                    Gained intense practical experience in software development, database administration, and IT infrastructure support at the ICT Authority of Kenya (State Corporation under Kenya State Corporations Act 446).
+                </p>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Contributed to full-stack Django systems (Library Management, ICT Asset Management, GBV System)</li>
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Diagnosed hardware, maintained network connectivity, and assisted operational users</li>
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Recognized by Supervisor <strong>Scholastica Mutuku</strong> (Software Engineer)</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'experience' %}" class="btn btn-primary-custom">
+                        VIEW FULL EXPERIENCE <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="{% url 'credentials' %}" class="btn btn-outline-custom">
+                        <i class="fas fa-award me-2"></i> Recommendation Letter
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 border-start border-4 border-primary">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-primary-subtle text-primary p-3 rounded-3">
+                            <i class="fas fa-quote-left fs-3"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white fw-bold mb-0">Supervisor Endorsement</h5>
+                            <span class="text-muted small">Scholastica Mutuku, Software Engineer</span>
+                        </div>
+                    </div>
+                    <blockquote class="text-light fst-italic mb-3 fs-6">
+                        "Pavis exhibited remarkable enthusiasm, dedication, and a strong willingness to learn, while making meaningful contributions to our software development and ICT support tasks."
+                    </blockquote>
+                    <div class="d-flex justify-content-between align-items-center text-muted small border-top border-secondary pt-2">
+                        <span>ICT Authority of Kenya</span>
+                        <span>20 July 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# 6. CURRENTLY LEARNING #}
+<section class="section-padding bg-card-subtle" id="learning-preview">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Continuous Growth</span>
+            <h2 class="section-title text-white">Currently Learning &amp; Exploring</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Actively expanding my technical knowledge with modern tools, frameworks, and deployment workflows.
+            </p>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+            {% for topic in learning_topics %}
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card p-3 rounded-3 h-100 d-flex align-items-center gap-3">
+                    <div class="learning-icon-box bg-primary-subtle text-primary p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; min-width: 48px;">
+                        <i class="{{ topic.icon|default:'fas fa-brain' }} fs-5"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="text-white fw-bold mb-1">{{ topic.name }}</h6>
+                        {% if topic.description %}
+                        <p class="text-light opacity-90 small mb-0">{{ topic.description|truncatewords:8 }}</p>
+                        {% else %}
+                        <span class="badge bg-primary-subtle text-primary small">In Progress</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'about' %}#learning" class="btn btn-outline-custom">
+                VIEW MY LEARNING JOURNEY <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# 7. CALL TO ACTION #}
+<section class="section-padding position-relative overflow-hidden text-center" id="home-cta">
+    <div class="container position-relative">
+        <div class="glass-card p-5 rounded-5 border border-primary border-opacity-25 shadow-lg mx-auto" style="max-width: 850px;">
+            <span class="section-tag">Let's Connect</span>
+            <h2 class="section-title text-white fs-1 mb-3">Let's Work Together</h2>
+            <p class="lead-text text-secondary mb-4 mx-auto" style="max-width: 600px;">
+                Whether you have an internship opportunity, a project collaboration, or an IT role, I would love to hear from you.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="{% url 'contact' %}" class="btn btn-primary-custom btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i> CONTACT ME
+                </a>
+                <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="btn btn-outline-custom btn-lg">
+                    <i class="fas fa-envelope me-2"></i> Send Direct Email
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

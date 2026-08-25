@@ -1,0 +1,180 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Developer Dashboard | Pavis Mugo Muruga{% endblock %}
+{% block meta_description %}Live developer metrics and portfolio dashboard for Pavis Mugo Muruga, driven directly by real database records.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-success text-white">Live Database Analytics</span>
+                </div>
+                <h1 class="display-4 text-white fw-bold">PAVIS DEVELOPER DASHBOARD</h1>
+                <p class="lead text-secondary mb-0">
+                    Real-time operational summary of software projects, active technologies, learning topics, and credentials.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 d-flex flex-wrap justify-content-lg-end gap-2">
+                <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="btn btn-secondary-custom" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github me-1"></i> GitHub: palvis997
+                </a>
+                <a href="{% url 'contact' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-paper-plane me-1"></i> Connect with Pavis
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD METRICS -->
+<section class="section-padding" id="dashboard-metrics">
+    <div class="container">
+        
+        <!-- Metrics Row -->
+        <div class="row g-4 mb-5">
+            <!-- 1. PROJECTS -->
+            <div class="col-6 col-lg-3">
+                <div class="glass-card p-4 rounded-4 text-center border-bottom border-4 border-primary h-100">
+                    <span class="text-white text-uppercase small fw-bold d-block mb-1 tracking-wide">PROJECTS</span>
+                    <span class="display-4 text-white fw-bold d-block mb-2">0{{ projects_count }}</span>
+                    <span class="badge bg-primary-subtle text-primary small">Full-Stack Systems</span>
+                </div>
+            </div>
+
+            <!-- 2. CURRENT FOCUS -->
+            <div class="col-6 col-lg-3">
+                <div class="glass-card p-4 rounded-4 text-center border-bottom border-4 border-info h-100">
+                    <span class="text-white text-uppercase small fw-bold d-block mb-1 tracking-wide">CURRENT FOCUS</span>
+                    <span class="h3 text-info fw-bold d-block mb-2 mt-2">Django</span>
+                    <span class="badge bg-info-subtle text-info small">Python &amp; REST APIs</span>
+                </div>
+            </div>
+
+            <!-- 3. EDUCATION -->
+            <div class="col-6 col-lg-3">
+                <div class="glass-card p-4 rounded-4 text-center border-bottom border-4 border-warning h-100">
+                    <span class="text-white text-uppercase small fw-bold d-block mb-1 tracking-wide">EDUCATION</span>
+                    <span class="h5 text-white fw-bold d-block mb-2 mt-2">BSc IT &bull; Year 2</span>
+                    <span class="badge bg-warning-subtle text-warning small">Kirinyaga University</span>
+                </div>
+            </div>
+
+            <!-- 4. EXPECTED GRADUATION -->
+            <div class="col-6 col-lg-3">
+                <div class="glass-card p-4 rounded-4 text-center border-bottom border-4 border-success h-100">
+                    <span class="text-white text-uppercase small fw-bold d-block mb-1 tracking-wide">EXPECTED GRADUATION</span>
+                    <span class="display-4 text-success fw-bold d-block mb-2">2028</span>
+                    <span class="badge bg-success-subtle text-success small">4-Year Degree</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Stats Row -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="glass-card p-4 rounded-4 d-flex align-items-center gap-3">
+                    <div class="p-3 bg-primary-subtle text-primary rounded-3 fs-3">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div>
+                        <span class="text-light opacity-90 small d-block">Verified Tech Skills</span>
+                        <h4 class="text-white fw-bold mb-0">{{ skills_count }} Competencies</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card p-4 rounded-4 d-flex align-items-center gap-3">
+                    <div class="p-3 bg-info-subtle text-info rounded-3 fs-3">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <span class="text-light opacity-90 small d-block">Currently Learning</span>
+                        <h4 class="text-white fw-bold mb-0">{{ learning_count }} Topics</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card p-4 rounded-4 d-flex align-items-center gap-3">
+                    <div class="p-3 bg-warning-subtle text-warning rounded-3 fs-3">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div>
+                        <span class="text-light opacity-90 small d-block">Blog Articles</span>
+                        <h4 class="text-white fw-bold mb-0">{{ posts_count }} Published</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content Columns -->
+        <div class="row g-5">
+            <!-- Left: Active Projects -->
+            <div class="col-lg-7">
+                <div class="glass-card p-4 rounded-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25">
+                        <h4 class="text-white fw-bold fs-5 mb-0"><i class="fas fa-cubes text-primary me-2"></i> Software Projects</h4>
+                        <a href="{% url 'projects' %}" class="btn btn-sm btn-outline-custom">View All</a>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        {% for project in recent_projects %}
+                        <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white fw-bold mb-1">{{ project.title }}</h6>
+                                <span class="text-light opacity-90 small">{{ project.technologies }}</span>
+                            </div>
+                            <span class="badge {{ project.status_badge_class }}">
+                                {{ project.get_status_display }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Learning Focus & Attachment -->
+            <div class="col-lg-5">
+                <div class="glass-card p-4 rounded-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-25">
+                        <h4 class="text-white fw-bold fs-5 mb-0"><i class="fas fa-graduation-cap text-warning me-2"></i> Active Learning</h4>
+                        <a href="{% url 'about' %}#learning" class="btn btn-sm btn-outline-custom">Details</a>
+                    </div>
+
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        {% for topic in learning_topics %}
+                        <li class="p-2.5 rounded-2 bg-dark-subtle d-flex justify-content-between align-items-center text-light small">
+                            <span><i class="{{ topic.icon|default:'fas fa-caret-right' }} text-primary me-2"></i> {{ topic.name }}</span>
+                            <span class="badge bg-primary-subtle text-primary small">In Progress</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="glass-card p-4 rounded-4 border-start border-4 border-success">
+                    <h5 class="text-white fw-bold mb-2">Industrial Attachment</h5>
+                    <p class="text-light opacity-90 small mb-3">
+                        ICT Authority of Kenya &bull; 13 Weeks Completed (4 May 2026 – 31 July 2026).
+                    </p>
+                    <a href="{% url 'credentials' %}" class="btn btn-outline-custom btn-sm">
+                        <i class="fas fa-certificate me-1"></i> View Recommendation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

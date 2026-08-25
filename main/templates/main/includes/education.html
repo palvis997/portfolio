@@ -1,0 +1,86 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- EDUCATION SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="education">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-graduation-cap me-2"></i>Education</span>
+            <h2 class="section-title">Academic Background</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">
+                Foundational and practical technology education at Kirinyaga University.
+            </p>
+        </div>
+
+        <div class="row justify-content-center">
+            {% for edu in education_list %}
+            <div class="col-lg-9 animate-on-scroll" data-animation="slide-up">
+                <div class="education-card glass-card p-4 p-md-5">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="education-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <h3 class="education-course mb-1">{{ edu.course }}</h3>
+                                <p class="education-institution text-accent fw-bold mb-1">{{ edu.institution }}</p>
+                                <div class="education-dates text-muted small">
+                                    <i class="fas fa-calendar-alt me-1 text-accent"></i>
+                                    {{ edu.start_date }} &bull; Expected Graduation: {{ edu.end_date }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="education-meta">
+                            <span class="badge bg-secondary-custom fs-6">{{ edu.level }}</span>
+                            {% if edu.is_current %}
+                            <span class="badge bg-success-custom ms-1">Active Student</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if edu.description %}
+                    <p class="education-desc mt-4 mb-3">{{ edu.description }}</p>
+                    {% endif %}
+
+                    {% if edu.relevant_areas %}
+                    <div class="education-areas mt-3 pt-3 border-top">
+                        <strong class="d-block text-muted small mb-2"><i class="fas fa-book me-1 text-accent"></i> Core Curriculum & Study Focus:</strong>
+                        <div class="education-tags d-flex flex-wrap gap-2">
+                            {% for area in edu.get_areas_list %}
+                            <span class="tech-tag">{{ area }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default education -->
+            <div class="col-lg-9 animate-on-scroll" data-animation="slide-up">
+                <div class="education-card glass-card p-4 p-md-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="education-icon"><i class="fas fa-university"></i></div>
+                        <div>
+                            <h3 class="education-course mb-1">Bachelor of Science in Information Technology</h3>
+                            <p class="education-institution text-accent fw-bold mb-0">Kirinyaga University</p>
+                            <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i> Year 2 &bull; Expected Graduation: 2028</small>
+                        </div>
+                    </div>
+                    <div class="education-areas mt-3 pt-3 border-top">
+                        <strong class="d-block text-muted small mb-2">Relevant Areas:</strong>
+                        <div class="education-tags d-flex flex-wrap gap-2">
+                            <span class="tech-tag">Web Development</span>
+                            <span class="tech-tag">Python & Django</span>
+                            <span class="tech-tag">Database Systems</span>
+                            <span class="tech-tag">Networking</span>
+                            <span class="tech-tag">Information Systems</span>
+                            <span class="tech-tag">System Administration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

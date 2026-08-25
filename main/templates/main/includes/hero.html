@@ -1,0 +1,157 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- HERO SECTION -->
+<!-- ============================================================ -->
+<section class="hero-section" id="hero">
+    <!-- Animated Background Elements -->
+    <div class="hero-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+
+    <!-- Floating Code Elements -->
+    <div class="hero-code-elements">
+        <span class="code-float code-1">&lt;django&gt;</span>
+        <span class="code-float code-2">def python():</span>
+        <span class="code-float code-3">models.Model</span>
+        <span class="code-float code-4">&lt;IT /&gt;</span>
+        <span class="code-float code-5">2026..2028</span>
+    </div>
+
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-7 hero-content">
+                <!-- Status Badge -->
+                <div class="hero-status animate-on-scroll" data-animation="fade-in">
+                    <span class="status-dot"></span>
+                    <span class="fw-bold tracking-wide">OPEN TO OPPORTUNITIES</span>
+                </div>
+
+                <!-- Greeting -->
+                <p class="hero-greeting animate-on-scroll" data-animation="fade-in">
+                    Hi, I'm
+                </p>
+
+                <!-- Official Name -->
+                <h1 class="hero-title animate-on-scroll" data-animation="fade-in">
+                    <span class="text-gradient d-block mb-1">PAVIS MUGO MURUGA</span>
+                    <span class="hero-title-sub text-white fs-4 d-block" id="typed-text"></span>
+                </h1>
+
+                <!-- Subtitle / Introduction -->
+                <p class="hero-subtitle animate-on-scroll" data-animation="fade-in">
+                    I build practical digital solutions using modern technologies and I'm passionate about software development, ICT and continuous learning.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="hero-buttons animate-on-scroll d-flex flex-wrap gap-3 my-4" data-animation="fade-in">
+                    <a href="{% url 'projects' %}" class="btn btn-primary-custom btn-lg">
+                        <i class="fas fa-laptop-code me-2"></i> VIEW MY PROJECTS
+                    </a>
+                    <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="btn btn-secondary-custom btn-lg" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github me-2"></i> GitHub Profile <i class="fas fa-arrow-up-right-from-square ms-1 small"></i>
+                    </a>
+                    <a href="{% url 'resume' %}" class="btn btn-outline-custom btn-lg">
+                        <i class="fas fa-file-download me-2"></i> DOWNLOAD CV
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-custom btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i> CONTACT ME
+                    </a>
+                </div>
+
+                <!-- Verified Stats Strip (from actual DB) -->
+                <div class="hero-stats-strip mt-3 animate-on-scroll" data-animation="fade-in">
+                    <div class="row g-3 text-center text-sm-start">
+                        <div class="col-6 col-sm-3">
+                            <div class="hero-stat-box">
+                                <span class="stat-number">13</span>
+                                <span class="stat-label">Weeks Attachment</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <div class="hero-stat-box">
+                                <span class="stat-number">{{ stats.projects_count|default:"4" }}</span>
+                                <span class="stat-label">Core Projects</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <div class="hero-stat-box">
+                                <span class="stat-number">{{ stats.skills_count|default:"27" }}+</span>
+                                <span class="stat-label">Tech Skills</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3">
+                            <div class="hero-stat-box">
+                                <span class="stat-number">2028</span>
+                                <span class="stat-label">Expected Grad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social & Direct Contact Links -->
+                <div class="hero-social animate-on-scroll mt-4 d-flex gap-3 align-items-center" data-animation="fade-in">
+                    <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="hero-social-link" aria-label="Email" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/{{ site.whatsapp_number|default:'254711652479' }}" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="tel:{{ site.phone|default:'0711652479' }}" class="hero-social-link" aria-label="Phone" title="Phone">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    {% if site.linkedin_url %}
+                    <a href="{{ site.linkedin_url }}" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'about' %}" class="hero-social-link" aria-label="LinkedIn" title="LinkedIn (Connect on About page)">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Profile Image / Developer Graphic -->
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="hero-image-wrapper animate-on-scroll" data-animation="fade-in">
+                    <div class="hero-image-container">
+                        {% if site.profile_image %}
+                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="hero-image" loading="lazy">
+                        {% else %}
+                        <div class="hero-image-placeholder">
+                            <i class="fas fa-laptop-code display-3 text-accent mb-3"></i>
+                            <h4 class="mb-1">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h4>
+                            <p class="small text-muted mb-0">Kirinyaga University &bull; Year 2</p>
+                            <span class="badge bg-secondary-custom mt-2">ICT Authority Alum</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- Decorative rings -->
+                    <div class="hero-ring hero-ring-1"></div>
+                    <div class="hero-ring hero-ring-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator">
+            <a href="#about" aria-label="Scroll down">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Hidden data for typing animation -->
+<script>
+    window.heroTitle = "{{ site.hero_title|default:'Information Technology Student | Python & Django Developer | IT Support'|escapejs }}";
+</script>

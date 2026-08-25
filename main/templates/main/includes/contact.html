@@ -1,0 +1,123 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- CONTACT SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="contact">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-envelope me-2"></i>Contact</span>
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">Have a project in mind, a question, or want to connect? I'd love to hear from you.</p>
+        </div>
+
+        <div class="row g-5">
+            <!-- Contact Info -->
+            <div class="col-lg-5 animate-on-scroll" data-animation="slide-up">
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Let's Connect</h3>
+                    <p class="contact-info-desc">
+                        Whether you have a project idea, want to collaborate, or just want to say hello — I'm always open to new connections and opportunities.
+                    </p>
+
+                    <div class="contact-info-items">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <small>Email</small>
+                                <a href="mailto:{{ site.email|default:'YOUR_EMAIL' }}">{{ site.email|default:"YOUR_EMAIL" }}</a>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <small>Phone</small>
+                                <span>{{ site.phone|default:"YOUR_PHONE" }}</span>
+                            </div>
+                        </div>
+                        {% if site.whatsapp_number and site.whatsapp_number != 'YOUR_WHATSAPP_NUMBER' %}
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div>
+                                <small>WhatsApp</small>
+                                <a href="https://wa.me/{{ site.whatsapp_number }}">Chat on WhatsApp</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fab fa-github"></i></div>
+                            <div>
+                                <small>GitHub</small>
+                                <a href="{{ site.github_url|default:'#' }}" target="_blank" rel="noopener">{{ site.github_username|default:"YOUR_GITHUB_USERNAME" }}</a>
+                            </div>
+                        </div>
+                        {% if site.linkedin_url %}
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fab fa-linkedin-in"></i></div>
+                            <div>
+                                <small>LinkedIn</small>
+                                <a href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn Profile</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <small>Location</small>
+                                <span>{{ site.location|default:"Kenya" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-7 animate-on-scroll" data-animation="slide-up">
+                <div class="contact-form-wrapper glass-card">
+                    <form method="POST" action="{% url 'contact_submit' %}" id="contact-form" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="contact-name" class="form-label">Full Name *</label>
+                                {{ contact_form.name }}
+                                {% if contact_form.name.errors %}
+                                <div class="invalid-feedback d-block">{{ contact_form.name.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contact-email" class="form-label">Email Address *</label>
+                                {{ contact_form.email }}
+                                {% if contact_form.email.errors %}
+                                <div class="invalid-feedback d-block">{{ contact_form.email.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contact-phone" class="form-label">Phone Number</label>
+                                {{ contact_form.phone }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contact-subject" class="form-label">Subject *</label>
+                                {{ contact_form.subject }}
+                                {% if contact_form.subject.errors %}
+                                <div class="invalid-feedback d-block">{{ contact_form.subject.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                <label for="contact-message" class="form-label">Message *</label>
+                                {{ contact_form.message }}
+                                {% if contact_form.message.errors %}
+                                <div class="invalid-feedback d-block">{{ contact_form.message.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary-custom btn-lg w-100" id="contact-submit-btn">
+                                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

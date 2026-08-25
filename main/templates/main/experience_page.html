@@ -1,0 +1,152 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Experience | Pavis Mugo Muruga — ICT Authority of Kenya Attachment{% endblock %}
+{% block meta_description %}Detailed industrial attachment experience of Pavis Mugo Muruga at the ICT Authority of Kenya (4 May 2026 – 31 July 2026, 13 Weeks) including software systems, support tasks, and lessons learned.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Experience</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 text-white fw-bold">Industrial Experience</h1>
+                <p class="lead text-secondary mb-0">
+                    Practical industry tenure at the ICT Authority of Kenya &bull; 13 Weeks of Intensive Systems Development &amp; Support.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'credentials' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-certificate me-2"></i> View Recommendation Letter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE DETAILS -->
+<section class="section-padding" id="experience-details">
+    <div class="container">
+        
+        <!-- Organization Highlight Card -->
+        {% for exp in experiences %}
+        <div class="glass-card p-4 p-md-5 rounded-4 mb-5 border-start border-5 border-primary shadow-lg">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+                <div>
+                    <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-1 fw-bold fs-6">Industrial Attachment</span>
+                    <h2 class="text-white fw-bold fs-2 mb-1">{{ exp.role }}</h2>
+                    <h4 class="text-primary fw-semibold mb-0">{{ exp.organization }}</h4>
+                    <span class="text-light opacity-90 small">State Corporation under Kenya State Corporations Act 446</span>
+                </div>
+                <div class="text-md-end">
+                    <div class="badge bg-dark-subtle text-white border border-secondary px-3 py-2 fs-6 mb-2">
+                        <i class="fas fa-calendar-alt text-primary me-2"></i> {{ exp.duration }}
+                    </div>
+                    <div class="text-light opacity-90 small">
+                        <i class="fas fa-map-marker-alt me-1 text-danger"></i> Kenya
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-light fs-5 mb-4" style="line-height: 1.7;">
+                {{ exp.description }}
+            </p>
+
+            <!-- Attachment Core Competencies Strip -->
+            <div class="row g-3 text-center mb-5">
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25">
+                        <i class="fab fa-python text-primary fs-3 mb-2"></i>
+                        <h6 class="text-white fw-bold mb-0">Python &amp; Django</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25">
+                        <i class="fas fa-cubes text-info fs-3 mb-2"></i>
+                        <h6 class="text-white fw-bold mb-0">System Development</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25">
+                        <i class="fas fa-headset text-success fs-3 mb-2"></i>
+                        <h6 class="text-white fw-bold mb-0">ICT Support Services</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25">
+                        <i class="fas fa-users text-warning fs-3 mb-2"></i>
+                        <h6 class="text-white fw-bold mb-0">Team Collaboration</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Systems & Work Accomplished -->
+            <h3 class="text-white fw-bold fs-4 mb-4">
+                <i class="fas fa-laptop-code text-primary me-2"></i> Projects &amp; Systems Developed During Attachment
+            </h3>
+
+            <div class="row g-4">
+                {% for ep in exp.exp_projects.all %}
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 rounded-4 h-100 d-flex flex-column bg-dark-subtle border border-secondary border-opacity-25">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h4 class="text-white fw-bold fs-5 mb-0">{{ ep.name }}</h4>
+                            <span class="badge bg-primary-subtle text-primary small">Attachment Project</span>
+                        </div>
+                        <p class="text-light opacity-90 small mb-3" style="line-height: 1.6;">{{ ep.description }}</p>
+                        
+                        <div class="mb-3">
+                            <strong class="text-white small d-block mb-1"><i class="fas fa-tasks text-primary me-1"></i> Key Responsibilities:</strong>
+                            <p class="text-light opacity-90 small mb-0">{{ ep.responsibilities }}</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <strong class="text-white small d-block mb-1"><i class="fas fa-lightbulb text-warning me-1"></i> Key Takeaway / Lesson:</strong>
+                            <p class="text-light opacity-90 small mb-0">{{ ep.lessons }}</p>
+                        </div>
+
+                        <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                            <strong class="text-white small d-block mb-2">Technologies Used:</strong>
+                            <div class="d-flex flex-wrap gap-1">
+                                {% for tech in ep.get_technologies_list %}
+                                <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25 small">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        {% endfor %}
+
+        <!-- Supervisor Commendation Section -->
+        <div class="glass-card p-4 p-md-5 rounded-4 border-start border-4 border-warning shadow-sm">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="badge bg-warning-subtle text-warning mb-2 px-3 py-1">Supervisor Attestation</span>
+                    <h3 class="text-white fw-bold fs-4 mb-2">Scholastica Mutuku, Software Engineer</h3>
+                    <h6 class="text-light opacity-90 mb-3">ICT Authority of Kenya &bull; 20 July 2026</h6>
+                    <blockquote class="text-white fst-italic fs-6 mb-0" style="line-height: 1.7;">
+                        "Pavis Mugo Muruga successfully completed his 13-week industrial attachment at the ICT Authority of Kenya from 4 May 2026 to 31 July 2026. Throughout his tenure, he exhibited remarkable enthusiasm, dedication, and a strong willingness to learn, while making meaningful contributions to our software development and ICT support tasks."
+                    </blockquote>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{% url 'credentials' %}" class="btn btn-outline-custom">
+                        <i class="fas fa-file-signature me-2"></i> View Full Recommendation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

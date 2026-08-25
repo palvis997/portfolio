@@ -1,0 +1,48 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- GOALS SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="goals">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-bullseye me-2"></i>My Goals</span>
+            <h2 class="section-title">Where I'm Heading</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">I am driven by purpose and a clear vision for my future in technology.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for goal in goals %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card">
+                    <div class="goal-icon"><i class="{{ goal.icon|default:'fas fa-bullseye' }}"></i></div>
+                    <h4 class="goal-title">{{ goal.title }}</h4>
+                    {% if goal.description %}
+                    <p class="goal-desc">{{ goal.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default goals -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-laptop-code"></i></div><h4 class="goal-title">Professional Software Developer</h4><p class="goal-desc">Become a skilled and professional software developer, building solutions that make a meaningful impact.</p></div>
+            </div>
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-project-diagram"></i></div><h4 class="goal-title">Build Scalable Solutions</h4><p class="goal-desc">Design and develop software systems that are scalable, maintainable, and solve real-world problems.</p></div>
+            </div>
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-server"></i></div><h4 class="goal-title">Backend Mastery</h4><p class="goal-desc">Deepen expertise in backend development with Django, APIs, databases, and server architecture.</p></div>
+            </div>
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-cloud"></i></div><h4 class="goal-title">Cloud Technologies</h4><p class="goal-desc">Learn and master cloud platforms for deploying and managing applications at scale.</p></div>
+            </div>
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-shield-alt"></i></div><h4 class="goal-title">Cybersecurity Knowledge</h4><p class="goal-desc">Expand knowledge in cybersecurity to build more secure applications and systems.</p></div>
+            </div>
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="goal-card glass-card"><div class="goal-icon"><i class="fas fa-hands-helping"></i></div><h4 class="goal-title">Meaningful Contributions</h4><p class="goal-desc">Contribute to technology projects that create positive change in communities and organizations.</p></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

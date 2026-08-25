@@ -1,0 +1,114 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Tech Playground | Pavis Mugo Muruga — Mini Apps &amp; Experiments{% endblock %}
+{% block meta_description %}Interactive mini-applications, scripts, and software experiments by Pavis Mugo Muruga: Password Analyzer, QR Code Generator, Subnet Calculator, and JavaScript utilities.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'projects' %}" class="text-primary">Projects</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Tech Playground</li>
+                    </ol>
+                </nav>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-warning text-dark text-uppercase fw-bold">Interactive Sandbox</span>
+                </div>
+                <h1 class="display-4 text-white fw-bold">TECH PLAYGROUND</h1>
+                <p class="lead text-secondary mb-0">
+                    A collection of mini tools, algorithms, and technical utilities created to experiment with emerging web technologies.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'project_lab' %}" class="btn btn-outline-custom">
+                    <i class="fas fa-laptop-code me-2"></i> Project Lab
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLAYGROUND CONTENT -->
+<section class="section-padding" id="playground-grid">
+    <div class="container">
+        
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Mini Applications</span>
+            <h2 class="section-title text-white">Interactive Utility Experiments</h2>
+            <p class="section-subtitle mx-auto" style="max-width: 600px;">
+                Practical client-side utilities and algorithm demonstrations built with clean JavaScript and Python backend logic.
+            </p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            {% for exp in experiments %}
+            <div class="col-md-6 col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100 d-flex flex-column border border-secondary border-opacity-25 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="p-3 rounded-3 bg-primary-subtle text-primary fs-3">
+                                <i class="{{ exp.icon|default:'fas fa-flask' }}"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white fw-bold fs-5 mb-0">{{ exp.title }}</h3>
+                                <span class="text-primary small fw-semibold">{{ exp.technology }}</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25">{{ exp.get_status_display }}</span>
+                    </div>
+
+                    <p class="text-light opacity-90 small mb-4 flex-grow-1" style="line-height: 1.6;">
+                        {{ exp.description }}
+                    </p>
+
+                    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex gap-2">
+                        {% if exp.demo_url %}
+                        <a href="{{ exp.demo_url }}" class="btn btn-primary-custom btn-sm flex-grow-1" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-play me-1"></i> Launch Experiment
+                        </a>
+                        {% else %}
+                        <button class="btn btn-outline-custom btn-sm flex-grow-1" disabled>
+                            <i class="fas fa-clock me-1"></i> Interactive Demo Coming Soon
+                        </button>
+                        {% endif %}
+
+                        {% if exp.code_url %}
+                        <a href="{{ exp.code_url }}" class="btn btn-secondary-custom btn-sm" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- COMING SOON BANNER -->
+        <div class="glass-card p-5 rounded-4 text-center border-dashed border-2 border-secondary border-opacity-50">
+            <div class="d-inline-flex p-3 bg-primary-subtle text-primary rounded-circle mb-3">
+                <i class="fas fa-tools fs-2"></i>
+            </div>
+            <h3 class="text-white fw-bold mb-2">More Experiments Coming Soon</h3>
+            <p class="text-light opacity-90 mb-4 mx-auto" style="max-width: 600px; line-height: 1.6;">
+                Upcoming tools include a REST API Demonstration, Form Validator, Regex Tester, and Network Latency Meter.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'projects' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-layer-group me-2"></i> View Major Projects
+                </a>
+                <a href="{% url 'contact' %}" class="btn btn-outline-custom">
+                    <i class="fas fa-lightbulb me-2"></i> Suggest an Experiment
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

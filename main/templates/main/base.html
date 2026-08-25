@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- SEO -->
+    <title>{% block title %}{{ site.full_name|default:"Pavis Mugo Muruga" }} — {{ site.site_title|default:"Information Technology Student | Python & Django Developer" }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ site.site_description|default:'Pavis Mugo Muruga — Information Technology student at Kirinyaga University, Python & Django developer, and IT support professional.' }}{% endblock %}">
+    <meta name="author" content="{{ site.full_name|default:'Pavis Mugo Muruga' }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{{ site.full_name|default:'Pavis Mugo Muruga' }} — Portfolio{% endblock %}">
+    <meta property="og:description" content="{{ site.site_description|default:'Information Technology Student | Python & Django Developer | IT Support' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if site.og_image %}
+    <meta property="og:image" content="{{ site.og_image.url }}">
+    {% endif %}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ site.full_name|default:'Pavis Mugo Muruga' }} — Portfolio">
+    <meta name="twitter:description" content="{{ site.site_description|default:'Information Technology Student | Python & Django Developer | IT Support' }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- ============================================================ -->
+    <!-- SITE WRAPPER (Smoothly shifts left when a11y drawer opens) -->
+    <!-- ============================================================ -->
+    <div id="site-wrapper" class="site-wrapper">
+        <!-- ============================================================ -->
+        <!-- NAVBAR -->
+        <!-- ============================================================ -->
+        <nav class="navbar navbar-expand-xl fixed-top" id="main-navbar">
+            <div class="container">
+                <!-- Brand / Logo -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <span class="brand-accent">&lt;</span>{{ site.full_name|default:"Pavis Mugo Muruga" }}<span class="brand-accent"> /&gt;</span>
+                </a>
+
+                <!-- Mobile Toggle & Theme Button -->
+                <div class="d-flex align-items-center gap-2 d-xl-none">
+                    <button class="theme-toggle-btn" id="theme-toggle-mobile" type="button" aria-label="Toggle theme">
+                        <i class="fas fa-moon" id="theme-icon-mobile"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <!-- Nav Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-xl-center">
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name in 'what_i_do,services' %}active{% endif %}" href="{% url 'what_i_do' %}">What I Do</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'skills' %}active{% endif %}" href="{% url 'skills' %}">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'experience' %}active{% endif %}" href="{% url 'experience' %}">Experience</a></li>
+                        
+                        <!-- Projects Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name in 'projects,project_detail,project_lab,playground' %}active{% endif %}" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Projects
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="projectsDropdown">
+                                <li><a class="dropdown-item" href="{% url 'projects' %}"><i class="fas fa-layer-group me-2 text-primary"></i> All Projects</a></li>
+                                <li><a class="dropdown-item" href="{% url 'project_lab' %}"><i class="fas fa-laptop-code me-2 text-info"></i> Project Lab</a></li>
+                                <li><a class="dropdown-item" href="{% url 'playground' %}"><i class="fas fa-flask me-2 text-warning"></i> Tech Playground</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'credentials' %}active{% endif %}" href="{% url 'credentials' %}">Credentials</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name in 'resume,cv_view' %}active{% endif %}" href="{% url 'resume' %}">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name in 'blog_list,blog_detail' %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
+
+                        <li class="nav-item ms-2">
+                            <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="theme-toggle-btn d-inline-flex align-items-center justify-content-center text-white" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub: palvis997">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-xl-block ms-2">
+                            <button class="theme-toggle-btn" id="theme-toggle-desktop" type="button" aria-label="Toggle theme">
+                                <i class="fas fa-moon" id="theme-icon-desktop"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item ms-xl-2 mt-2 mt-xl-0">
+                            <a class="btn btn-primary-custom btn-sm" href="{% url 'contact' %}">
+                                <i class="fas fa-paper-plane me-1"></i> Let's Connect
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ============================================================ -->
+        <!-- MESSAGES -->
+        <!-- ============================================================ -->
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- ============================================================ -->
+        <!-- MAIN CONTENT -->
+        <!-- ============================================================ -->
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- ============================================================ -->
+        <!-- FOOTER -->
+        <!-- ============================================================ -->
+        <footer class="site-footer" id="footer">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{% url 'home' %}" class="footer-brand">
+                            <span class="brand-accent">&lt;</span>{{ site.full_name|default:"Pavis Mugo Muruga" }}<span class="brand-accent"> /&gt;</span>
+                        </a>
+                        <p class="footer-tagline mt-3">
+                            Building solutions. Learning continuously. Creating impact.
+                        </p>
+                        <div class="footer-social mt-3">
+                            {% for link in social_links %}
+                            {% if link.is_active %}
+                            <a href="{{ link.url }}" class="footer-social-link" target="_blank" rel="noopener noreferrer"
+                               aria-label="{{ link.get_platform_display }}">
+                                <i class="{{ link.icon }}"></i>
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                            <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="footer-social-link" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Pages</h5>
+                        <ul class="footer-links">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Me</a></li>
+                            <li><a href="{% url 'what_i_do' %}">What I Do</a></li>
+                            <li><a href="{% url 'skills' %}">Skills</a></li>
+                            <li><a href="{% url 'projects' %}">Projects</a></li>
+                            <li><a href="{% url 'project_lab' %}">Project Lab</a></li>
+                            <li><a href="{% url 'playground' %}">Tech Playground</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Credentials & Experience -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Career & Growth</h5>
+                        <ul class="footer-links">
+                            <li><a href="{% url 'experience' %}">ICT Authority Experience</a></li>
+                            <li><a href="{% url 'credentials' %}">Credentials & Recommendation</a></li>
+                            <li><a href="{% url 'resume' %}">Resume / CV</a></li>
+                            <li><a href="{% url 'dashboard' %}">Developer Dashboard</a></li>
+                            <li><a href="{% url 'blog_list' %}">Blog Articles</a></li>
+                            <li><a href="{% url 'accessibility' %}">Accessibility Statement</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Direct Contact</h5>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}">{{ site.email|default:"palvismugo06@gmail.com" }}</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:{{ site.phone|default:'0711652479' }}">{{ site.phone|default:"0711652479" }}</a>
+                            </li>
+                            <li>
+                                <i class="fab fa-github"></i>
+                                <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" target="_blank" rel="noopener noreferrer">github.com/{{ site.github_username|default:"palvis997" }}</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>{{ site.location|default:"Kenya" }}</span>
+                            </li>
+                        </ul>
+                        <div class="mt-3">
+                            <a href="{% url 'contact' %}" class="btn btn-outline-primary-custom btn-sm w-100">
+                                <i class="fas fa-envelope me-1"></i> Send a Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="footer-divider">
+
+                <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <p class="mb-0">&copy; 2026 {{ site.full_name|default:"Pavis Mugo Muruga" }}. All Rights Reserved.</p>
+                    <div class="footer-bottom-links d-flex gap-3">
+                        <a href="{% url 'accessibility' %}" class="text-muted small">Accessibility Statement</a>
+                        <a href="{% url 'contact' %}" class="text-muted small">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ============================================================ -->
+        <!-- WHATSAPP FLOATING BUTTON -->
+        <!-- ============================================================ -->
+        {% if site.whatsapp_number and site.whatsapp_number != 'YOUR_WHATSAPP_NUMBER' %}
+        <a href="https://wa.me/{{ site.whatsapp_number }}?text={{ site.whatsapp_message|urlencode }}"
+           class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+           aria-label="Chat on WhatsApp" id="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        {% endif %}
+
+        <!-- ============================================================ -->
+        <!-- BACK TO TOP BUTTON -->
+        <!-- ============================================================ -->
+        <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div><!-- /#site-wrapper -->
+
+    <!-- ============================================================ -->
+    <!-- CERTIFICATE / DOCUMENT MODAL -->
+    <!-- ============================================================ -->
+    <div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="certModalLabel">Credential Document</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" alt="Document" class="img-fluid" id="certModalImage">
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="btn btn-primary-custom" id="certModalVerify" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt me-1"></i> Verify / View
+                    </a>
+                    <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ACCESSIBILITY FLOATING BAR -->
+    <!-- ============================================================ -->
+    {% include 'main/includes/accessibility_bar.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,127 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} — {{ site.full_name|default:"Pavis Mugo Muruga" }} Blog{% endblock %}
+{% block meta_description %}{{ post.excerpt|default:post.content|truncatewords:25 }}{% endblock %}
+
+{% block content %}
+<section class="section-padding blog-detail-section">
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="fas fa-home me-1"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'blog_list' %}">Blog</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ post.title|truncatechars:35 }}</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <!-- Article Header -->
+                <header class="article-header mb-4">
+                    {% if post.category %}
+                    <a href="{% url 'blog_list' %}?category={{ post.category }}" class="project-category-badge mb-3 d-inline-block">
+                        {{ post.category }}
+                    </a>
+                    {% endif %}
+                    
+                    <h1 class="article-main-title">{{ post.title }}</h1>
+
+                    <div class="article-meta-bar d-flex flex-wrap align-items-center gap-3 py-3 my-3 border-top border-bottom">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-user-circle fa-lg text-accent"></i>
+                            <span class="fw-semibold">{{ post.author }}</span>
+                        </div>
+                        <span class="meta-dot">&bull;</span>
+                        <div>
+                            <i class="fas fa-calendar-alt me-1 text-muted"></i>
+                            <span>{{ post.created_at|date:"F d, Y" }}</span>
+                        </div>
+                        <span class="meta-dot">&bull;</span>
+                        <div>
+                            <i class="fas fa-clock me-1 text-muted"></i>
+                            <span>{{ post.reading_time }} min read</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Featured Image -->
+                {% if post.featured_image %}
+                <div class="article-featured-img-wrap mb-5 glass-card p-2">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded-4 w-100">
+                </div>
+                {% endif %}
+
+                <!-- Article Content Body -->
+                <div class="glass-card p-4 p-md-5 article-body-container mb-5">
+                    <div class="article-content-typography">
+                        {{ post.content|linebreaks }}
+                    </div>
+
+                    <!-- Tags -->
+                    {% if post.get_tags_list %}
+                    <div class="article-footer-tags pt-4 mt-5 border-top">
+                        <span class="fw-bold me-2"><i class="fas fa-tags text-accent me-1"></i> Tags:</span>
+                        {% for t in post.get_tags_list %}
+                        <a href="{% url 'blog_list' %}?tag={{ t }}" class="badge-tag me-1 mb-1">#{{ t }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Author Bio Card -->
+                <div class="glass-card p-4 mb-5 d-flex flex-column flex-sm-row align-items-center gap-4 text-center text-sm-start">
+                    <div class="author-bio-avatar">
+                        {% if site.profile_image %}
+                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+                        {% else %}
+                        <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: rgba(99, 102, 241, 0.15); color: var(--accent-primary);">
+                            <i class="fas fa-user-tie fa-2x"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h4 class="mb-1">Written by {{ post.author }}</h4>
+                        <p class="small text-muted mb-2">{{ site.profession|default:"IT Student & Software Developer" }}</p>
+                        <p class="small mb-0">{{ site.bio|default:"Dedicated to crafting scalable digital solutions and sharing actionable technical knowledge." }}</p>
+                    </div>
+                </div>
+
+                <!-- Related Posts -->
+                {% if related_posts %}
+                <div class="related-articles-section mt-5">
+                    <h3 class="section-title fs-4 mb-4"><i class="fas fa-layer-group text-accent me-2"></i> Related Articles</h3>
+                    <div class="row g-4">
+                        {% for rel in related_posts %}
+                        <div class="col-md-4">
+                            <div class="blog-card glass-card h-100 p-3 d-flex flex-column">
+                                <span class="small text-muted mb-1">{{ rel.created_at|date:"M d, Y" }}</span>
+                                <h5 class="fs-6 mb-2">
+                                    <a href="{{ rel.get_absolute_url }}" class="text-reset text-accent-hover">{{ rel.title }}</a>
+                                </h5>
+                                <p class="small text-muted flex-grow-1">{{ rel.excerpt|default:rel.content|truncatewords:10 }}</p>
+                                <a href="{{ rel.get_absolute_url }}" class="small text-accent fw-bold mt-2">
+                                    Read <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Navigation buttons -->
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                    <a href="{% url 'blog_list' %}" class="btn btn-outline-custom">
+                        <i class="fas fa-arrow-left me-2"></i> Back to All Articles
+                    </a>
+                    <a href="{% url 'home' %}#contact" class="btn btn-primary-custom">
+                        <i class="fas fa-paper-plane me-2"></i> Contact Pavis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

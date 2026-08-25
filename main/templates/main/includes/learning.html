@@ -1,0 +1,56 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- CURRENTLY LEARNING SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="learning">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-book-open me-2"></i>Currently Learning</span>
+            <h2 class="section-title">Expanding My Skills</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">I believe in lifelong learning. Here are the technologies and topics I'm currently diving deeper into.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            {% for topic in learning_topics %}
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center">
+                    <div class="learning-icon">
+                        <i class="{{ topic.icon|default:'fas fa-book-open' }}"></i>
+                    </div>
+                    <h5 class="learning-name">{{ topic.name }}</h5>
+                    {% if topic.description %}
+                    <p class="learning-desc">{{ topic.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default learning topics -->
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fab fa-python"></i></div><h5 class="learning-name">Advanced Python</h5><p class="learning-desc">Deep dive into Python patterns and best practices</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-server"></i></div><h5 class="learning-name">Advanced Django</h5><p class="learning-desc">Building complex, scalable web applications</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-plug"></i></div><h5 class="learning-name">REST APIs</h5><p class="learning-desc">Designing and consuming RESTful APIs</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-database"></i></div><h5 class="learning-name">PostgreSQL</h5><p class="learning-desc">Advanced database management and optimization</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fab fa-js-square"></i></div><h5 class="learning-name">JavaScript</h5><p class="learning-desc">Advanced frontend and interactive development</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-cloud"></i></div><h5 class="learning-name">Cloud Deployment</h5><p class="learning-desc">Deploying apps to cloud platforms</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-shield-alt"></i></div><h5 class="learning-name">Cybersecurity</h5><p class="learning-desc">Security best practices and fundamentals</p></div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 animate-on-scroll" data-animation="slide-up">
+                <div class="learning-card glass-card text-center"><div class="learning-icon"><i class="fas fa-drafting-compass"></i></div><h5 class="learning-name">Software Architecture</h5><p class="learning-desc">Designing scalable software systems</p></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

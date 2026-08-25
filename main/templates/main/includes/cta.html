@@ -1,0 +1,33 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- HIRE ME / WORK WITH ME CALL TO ACTION -->
+<!-- ============================================================ -->
+<section class="section-padding cta-section" id="work-with-me">
+    <div class="container">
+        <div class="cta-card glass-card animate-on-scroll" data-animation="slide-up">
+            <div class="cta-glow"></div>
+            <div class="row align-items-center g-4 text-center text-lg-start">
+                <div class="col-lg-8">
+                    <span class="section-tag mb-2 d-inline-block"><i class="fas fa-handshake me-2"></i>Collaboration & Opportunities</span>
+                    <h2 class="cta-title">Have a project or technology challenge in mind?</h2>
+                    <p class="cta-subtitle mb-0">
+                        Let's build something useful together. Whether you're looking to develop a Python & Django web application, improve data and system workflows, or require reliable IT support, I'm open to discussing opportunities.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="d-flex flex-column flex-sm-row flex-lg-column gap-3 justify-content-center justify-content-lg-end">
+                        <a href="#contact" class="btn btn-primary-custom btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i> Contact Me
+                        </a>
+                        <a href="#projects" class="btn btn-outline-custom btn-lg">
+                            <i class="fas fa-code me-2"></i> View My Projects
+                        </a>
+                        <a href="{% url 'cv_view' %}" class="btn btn-secondary-custom btn-lg">
+                            <i class="fas fa-file-alt me-2"></i> View Full CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

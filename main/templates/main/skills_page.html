@@ -1,0 +1,216 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Technical Skills | Pavis Mugo Muruga — Python, Django, ICT &amp; Data{% endblock %}
+{% block meta_description %}Comprehensive technical skills of Pavis Mugo Muruga: Python, Django, Web Development, Databases, ICT Support, Networking, and Data Capturing.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Skills</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 text-white fw-bold">Technical Skills &amp; Stack</h1>
+                <p class="lead text-secondary mb-0">
+                    Curated technical abilities, development tools, and operational proficiencies with verified competency ratings.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'projects' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-laptop-code me-2"></i> See Projects in Action
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS DIRECTORY -->
+<section class="section-padding" id="skills-directory">
+    <div class="container">
+        
+        <!-- Legend (No fake percentages) -->
+        <div class="glass-card p-3 rounded-4 mb-5 d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-info-circle text-primary fs-5"></i>
+                <span class="text-white fw-semibold small">Proficiency Standard:</span>
+            </div>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-success-subtle text-success px-3 py-2 border border-success border-opacity-25">
+                    <i class="fas fa-check-circle me-1"></i> Proficient — Confident in project implementation &amp; architecture
+                </span>
+                <span class="badge bg-primary-subtle text-primary px-3 py-2 border border-primary border-opacity-25">
+                    <i class="fas fa-star-half-alt me-1"></i> Intermediate — Solid practical application &amp; daily development
+                </span>
+                <span class="badge bg-info-subtle text-info px-3 py-2 border border-info border-opacity-25">
+                    <i class="fas fa-seedling me-1"></i> Learning — Actively exploring &amp; expanding capabilities
+                </span>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- 1. PROGRAMMING & BACKEND -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fab fa-python text-primary"></i> Programming &amp; Backend
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_programming %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-code' }} text-primary fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-primary-subtle text-primary align-self-start">{{ skill.level|default:'Proficient'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. FRAMEWORKS -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-layer-group text-info"></i> Frameworks &amp; Web Stack
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_framework %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-layer-group' }} text-info fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-info-subtle text-info align-self-start">{{ skill.level|default:'Proficient'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. DATABASES -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-database text-danger"></i> Databases &amp; Relational Modeling
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_database %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-database' }} text-danger fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-danger-subtle text-danger align-self-start">{{ skill.level|default:'Intermediate'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. DATA & INFORMATION MANAGEMENT -->
+            <div class="col-lg-6" id="data">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-file-invoice text-warning"></i> Data &amp; Information Management
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_data %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-file-alt' }} text-warning fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning align-self-start">{{ skill.level|default:'Proficient'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. ICT SUPPORT & HARDWARE -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-headset text-success"></i> ICT Support, Hardware &amp; Networking
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_it %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-tools' }} text-success fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-success-subtle text-success align-self-start">{{ skill.level|default:'Proficient'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. DEVELOPMENT TOOLS & ENVIRONMENT -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 rounded-4 h-100">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-laptop-code text-secondary"></i> Developer Tools &amp; Environment
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_tool %}
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="{{ skill.icon|default:'fas fa-terminal' }} text-secondary fs-5"></i>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                </div>
+                                <span class="badge bg-secondary-subtle text-light align-self-start">{{ skill.level|default:'Proficient'|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. PROFESSIONAL SKILLS -->
+            {% if skills_other %}
+            <div class="col-12">
+                <div class="glass-card p-4 rounded-4">
+                    <h3 class="text-white fw-bold fs-5 mb-3 pb-2 border-bottom border-secondary border-opacity-25 d-flex align-items-center gap-2">
+                        <i class="fas fa-users-cog text-primary"></i> Professional Strengths &amp; Soft Skills
+                    </h3>
+                    <div class="row g-3">
+                        {% for skill in skills_other %}
+                        <div class="col-md-4 col-sm-6">
+                            <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100 d-flex align-items-center gap-3">
+                                <i class="{{ skill.icon|default:'fas fa-check-circle' }} text-primary fs-4"></i>
+                                <div>
+                                    <h5 class="text-white fw-bold fs-6 mb-0">{{ skill.name }}</h5>
+                                    <span class="text-muted small">{{ skill.level|default:'Proficient'|title }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

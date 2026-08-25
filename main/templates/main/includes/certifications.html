@@ -1,0 +1,62 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- CERTIFICATIONS SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="certifications">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-certificate me-2"></i>Certifications</span>
+            <h2 class="section-title">Certifications & Credentials</h2>
+            <div class="section-line"></div>
+        </div>
+
+        {% if certifications %}
+        <div class="row g-4">
+            {% for cert in certifications %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="cert-card glass-card">
+                    {% if cert.image %}
+                    <div class="cert-image-container" 
+                         data-bs-toggle="modal" data-bs-target="#certModal"
+                         data-image="{{ cert.image.url }}"
+                         data-title="{{ cert.name }}"
+                         data-verify="{{ cert.verification_url }}"
+                         style="cursor:pointer;">
+                        <img src="{{ cert.image.url }}" alt="{{ cert.name }}" loading="lazy" class="cert-image">
+                        <div class="cert-image-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    {% else %}
+                    <div class="cert-icon-container">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    {% endif %}
+                    <div class="cert-content">
+                        <h4 class="cert-name">{{ cert.name }}</h4>
+                        <p class="cert-org"><i class="fas fa-building me-1"></i> {{ cert.organization }}</p>
+                        {% if cert.date %}
+                        <p class="cert-date"><i class="fas fa-calendar me-1"></i> {{ cert.date|date:"F Y" }}</p>
+                        {% endif %}
+                        {% if cert.description %}
+                        <p class="cert-desc">{{ cert.description }}</p>
+                        {% endif %}
+                        {% if cert.verification_url %}
+                        <a href="{{ cert.verification_url }}" class="btn btn-sm btn-outline-custom" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt me-1"></i> Verify
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center animate-on-scroll" data-animation="fade-in">
+            <div class="empty-state glass-card">
+                <i class="fas fa-certificate empty-state-icon"></i>
+                <h4>Certifications will be added soon.</h4>
+                <p>I am currently working on obtaining industry certifications to validate my skills.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

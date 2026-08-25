@@ -1,0 +1,211 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}What I Do | Pavis Mugo Muruga — Services &amp; Technical Capabilities{% endblock %}
+{% block meta_description %}Discover technical competencies of Pavis Mugo Muruga: Web Development, Python &amp; Django applications, System Development, ICT Support, and Data Capturing.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">What I Do</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 text-white fw-bold">What I Do</h1>
+                <p class="lead text-secondary mb-0">
+                    Comprehensive technical services spanning software engineering, systems maintenance, and data management.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'contact' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-paper-plane me-2"></i> Hire Me / Connect
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section-padding" id="services-grid">
+    <div class="container">
+        <div class="row g-4">
+            <!-- 1. Python & Django Development -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-primary">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-primary-subtle text-primary p-3 rounded-3">
+                            <i class="fab fa-python fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">Python &amp; Django Development</h3>
+                            <span class="text-primary small fw-semibold">Backend Engineering &amp; APIs</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Specialized in designing robust, secure, and maintainable backend architectures using Django's Model-View-Template (MVT) pattern, Django ORM, authentication mechanisms, and REST APIs.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-primary me-2"></i> Relational database schema design and migrations</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Role-based access control (RBAC) and secure authentication</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Form validation, error handling, and session management</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> RESTful API integration and modular view logic</li>
+                    </ul>
+                    <a href="{% url 'projects' %}?category=django" class="btn btn-outline-custom mt-auto">
+                        View Django Projects <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Web Development -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-info">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-info-subtle text-info p-3 rounded-3">
+                            <i class="fas fa-laptop-code fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">Web Development</h3>
+                            <span class="text-info small fw-semibold">Frontend &amp; Responsive UI</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Crafting intuitive, accessible, and fast web user interfaces using HTML5, CSS3, modern JavaScript (ES6+), and responsive CSS frameworks such as Bootstrap 5.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-info me-2"></i> Mobile-first responsive layouts across 320px to 1920px</li>
+                        <li><i class="fas fa-check text-info me-2"></i> Glassmorphism and modern UI design system implementations</li>
+                        <li><i class="fas fa-check text-info me-2"></i> Dynamic DOM manipulation and asynchronous JavaScript (Fetch API)</li>
+                        <li><i class="fas fa-check text-info me-2"></i> WCAG-compliant accessible web components</li>
+                    </ul>
+                    <a href="{% url 'projects' %}" class="btn btn-outline-custom mt-auto">
+                        View Web Projects <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. System Development -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-warning">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-warning-subtle text-warning p-3 rounded-3">
+                            <i class="fas fa-cubes fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">System Development</h3>
+                            <span class="text-warning small fw-semibold">End-to-End Enterprise Systems</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Engineering end-to-end information systems that digitize and automate manual organization workflows, inventory logs, and incident handling procedures.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-warning me-2"></i> Asset tracking, hardware register, and servicing log systems</li>
+                        <li><i class="fas fa-check text-warning me-2"></i> Digital library inventory, book availability, and return workflows</li>
+                        <li><i class="fas fa-check text-warning me-2"></i> Confidential reporting systems with anonymous reference tracking</li>
+                        <li><i class="fas fa-check text-warning me-2"></i> Comprehensive Django Admin customization and dashboards</li>
+                    </ul>
+                    <a href="{% url 'project_lab' %}" class="btn btn-outline-custom mt-auto">
+                        Explore Project Lab <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. ICT Support & Systems -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-success">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-success-subtle text-success p-3 rounded-3">
+                            <i class="fas fa-headset fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">ICT Support &amp; Maintenance</h3>
+                            <span class="text-success small fw-semibold">Hardware, Software &amp; Helpdesk</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Delivering systematic IT support, hardware diagnostics, operating system maintenance, peripheral configuration, and end-user technical guidance.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-success me-2"></i> Computer hardware assembly, testing, and component replacement</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Operating system installation, updates, and software troubleshooting</li>
+                        <li><i class="fas fa-check text-success me-2"></i> LAN, Ethernet, Wi-Fi, and DNS network troubleshooting</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Clear, empathetic user communication and issue ticketing</li>
+                    </ul>
+                    <a href="{% url 'experience' %}" class="btn btn-outline-custom mt-auto">
+                        View Attachment Experience <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Database Management -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-danger">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-danger-subtle text-danger p-3 rounded-3">
+                            <i class="fas fa-database fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">Database Management</h3>
+                            <span class="text-danger small fw-semibold">Relational Modeling &amp; Queries</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Designing normalized relational schemas in SQLite and PostgreSQL with foreign key relationships, transactional safety, and query optimization.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-danger me-2"></i> Database normalization (1NF, 2NF, 3NF) and constraint enforcement</li>
+                        <li><i class="fas fa-check text-danger me-2"></i> Django ORM query optimization (select_related, prefetch_related)</li>
+                        <li><i class="fas fa-check text-danger me-2"></i> Data backup procedures and data integrity checks</li>
+                    </ul>
+                    <a href="{% url 'skills' %}" class="btn btn-outline-custom mt-auto">
+                        View Database Skills <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Data Capturing & Information Management -->
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border-top border-4 border-secondary">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="feature-icon-box bg-secondary-subtle text-light p-3 rounded-3">
+                            <i class="fas fa-file-invoice fs-1"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white fw-bold fs-4 mb-0">Data Capturing &amp; Management</h3>
+                            <span class="text-secondary small fw-semibold">Accuracy, Entry &amp; Digital Records</span>
+                        </div>
+                    </div>
+                    <p class="text-light opacity-90 mb-4 flex-grow-1">
+                        Structured information entry, record verification, spreadsheet management, and digital archive structuring with rigorous accuracy standards.
+                    </p>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-4 text-light opacity-90 small">
+                        <li><i class="fas fa-check text-secondary me-2"></i> High-speed, high-accuracy data entry and verification</li>
+                        <li><i class="fas fa-check text-secondary me-2"></i> Digital record indexing, structuring, and file organization</li>
+                        <li><i class="fas fa-check text-secondary me-2"></i> Information audit, error detection, and consistency checks</li>
+                    </ul>
+                    <a href="{% url 'skills' %}#data" class="btn btn-outline-custom mt-auto">
+                        View Data Skills <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BANNER -->
+        <div class="glass-card p-5 rounded-4 text-center mt-5">
+            <h3 class="text-white fw-bold mb-2">Need a tailored digital solution or IT support?</h3>
+            <p class="text-secondary mb-4 mx-auto" style="max-width: 600px;">
+                I am ready to bring dedication, technical rigor, and problem-solving enthusiasm to your team or project.
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-primary-custom btn-lg">
+                <i class="fas fa-paper-plane me-2"></i> Get in Touch
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

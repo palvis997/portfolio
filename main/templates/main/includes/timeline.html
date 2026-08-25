@@ -1,0 +1,76 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- TIMELINE SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="journey">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-road me-2"></i>My Journey</span>
+            <h2 class="section-title">The Path So Far</h2>
+            <div class="section-line"></div>
+        </div>
+
+        {% if timeline_events %}
+        <div class="timeline">
+            {% for event in timeline_events %}
+            <div class="timeline-item {% if forloop.counter|divisibleby:2 %}timeline-right{% else %}timeline-left{% endif %} animate-on-scroll" data-animation="slide-up">
+                <div class="timeline-dot">
+                    <i class="{{ event.icon|default:'fas fa-circle' }}"></i>
+                </div>
+                <div class="timeline-content glass-card">
+                    <span class="timeline-date">
+                        <i class="fas fa-calendar-alt me-1"></i> {{ event.date }}
+                    </span>
+                    <span class="timeline-category badge-{{ event.category }}">
+                        {{ event.get_category_display }}
+                    </span>
+                    <h4 class="timeline-title">{{ event.title }}</h4>
+                    {% if event.description %}
+                    <p class="timeline-desc">{{ event.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="timeline">
+            <div class="timeline-item timeline-left animate-on-scroll" data-animation="slide-up">
+                <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-content glass-card">
+                    <span class="timeline-date"><i class="fas fa-calendar-alt me-1"></i> Present</span>
+                    <span class="timeline-category badge-education">Education</span>
+                    <h4 class="timeline-title">BSc. Information Technology — Kirinyaga University</h4>
+                    <p class="timeline-desc">Currently in Year 2, building a strong foundation in IT, software development, and web technologies.</p>
+                </div>
+            </div>
+            <div class="timeline-item timeline-right animate-on-scroll" data-animation="slide-up">
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content glass-card">
+                    <span class="timeline-date"><i class="fas fa-calendar-alt me-1"></i> Industrial Attachment</span>
+                    <span class="timeline-category badge-experience">Experience</span>
+                    <h4 class="timeline-title">ICT Authority of Kenya — 13 Weeks</h4>
+                    <p class="timeline-desc">Gained hands-on experience in ICT support, system development, and real-world project work.</p>
+                </div>
+            </div>
+            <div class="timeline-item timeline-left animate-on-scroll" data-animation="slide-up">
+                <div class="timeline-dot"><i class="fas fa-code"></i></div>
+                <div class="timeline-content glass-card">
+                    <span class="timeline-date"><i class="fas fa-calendar-alt me-1"></i> Ongoing</span>
+                    <span class="timeline-category badge-project">Projects</span>
+                    <h4 class="timeline-title">Building Real-World Applications</h4>
+                    <p class="timeline-desc">Developing systems like ICT Asset Management, Library Management, and GBV Reporting using Django.</p>
+                </div>
+            </div>
+            <div class="timeline-item timeline-right animate-on-scroll" data-animation="slide-up">
+                <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                <div class="timeline-content glass-card">
+                    <span class="timeline-date"><i class="fas fa-calendar-alt me-1"></i> Future</span>
+                    <span class="timeline-category badge-goal">Goal</span>
+                    <h4 class="timeline-title">Professional Software Developer</h4>
+                    <p class="timeline-desc">Aspiring to become a professional software developer, building scalable solutions and contributing to meaningful projects.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

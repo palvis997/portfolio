@@ -1,0 +1,50 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- TESTIMONIALS SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="testimonials">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-quote-left me-2"></i>Testimonials</span>
+            <h2 class="section-title">What Others Say</h2>
+            <div class="section-line"></div>
+        </div>
+
+        {% if testimonials %}
+        <div class="row g-4 justify-content-center">
+            {% for test in testimonials %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-message">{{ test.message }}</p>
+                    <div class="testimonial-author">
+                        {% if test.image %}
+                        <img src="{{ test.image.url }}" alt="{{ test.name }}" class="testimonial-avatar" loading="lazy">
+                        {% else %}
+                        <div class="testimonial-avatar-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <h5 class="testimonial-name">{{ test.name }}</h5>
+                            <p class="testimonial-position">
+                                {% if test.position %}{{ test.position }}{% endif %}
+                                {% if test.organization %} — {{ test.organization }}{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center animate-on-scroll" data-animation="fade-in">
+            <div class="empty-state glass-card">
+                <i class="fas fa-comments empty-state-icon"></i>
+                <h4>Testimonials coming soon.</h4>
+                <p>I look forward to sharing feedback from people I've collaborated with.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

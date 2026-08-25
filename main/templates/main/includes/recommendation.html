@@ -1,0 +1,194 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- PROFESSIONAL RECOMMENDATION SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="recommendation">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-stamp me-2"></i>Official Endorsement</span>
+            <h2 class="section-title">Professional Recommendation</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">
+                Official recommendation from my industrial attachment supervisor at the ICT Authority of Kenya.
+            </p>
+        </div>
+
+        {% if recommendations %}
+        {% for rec in recommendations %}
+        <div class="recommendation-card-wrapper animate-on-scroll" data-animation="slide-up">
+            <div class="recommendation-hero-card glass-card">
+                <!-- Watermark / Background stamp -->
+                <div class="recommendation-watermark">
+                    <i class="fas fa-certificate"></i>
+                </div>
+
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="recommendation-badge-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <span class="badge badge-verified"><i class="fas fa-check-circle me-1"></i> Verified Attachment</span>
+                                <span class="recommendation-date text-muted ms-2"><i class="fas fa-calendar-alt me-1"></i> {{ rec.recommendation_date }}</span>
+                            </div>
+                        </div>
+
+                        <blockquote class="recommendation-quote mb-4">
+                            "{{ rec.quote }}"
+                        </blockquote>
+
+                        <!-- Key Supervisor Commendations -->
+                        {% if rec.highlights %}
+                        <div class="recommendation-highlights">
+                            <h5 class="highlights-title"><i class="fas fa-star me-2 text-accent"></i> Key Highlights Recognized:</h5>
+                            <div class="row g-2 mt-1">
+                                {% for item in rec.get_highlights_list %}
+                                <div class="col-md-6">
+                                    <div class="highlight-pill">
+                                        <i class="fas fa-check-circle text-accent me-2"></i>
+                                        <span>{{ item }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="supervisor-profile-card glass-card text-center p-4">
+                            <div class="supervisor-avatar mb-3">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4 class="supervisor-name mb-1">{{ rec.supervisor_name }}</h4>
+                            <p class="supervisor-role text-accent mb-1">{{ rec.supervisor_role }}</p>
+                            <p class="supervisor-org mb-2">{{ rec.organization }}</p>
+                            {% if rec.organization_note %}
+                            <p class="small text-muted mb-3">{{ rec.organization_note }}</p>
+                            {% endif %}
+
+                            <div class="attachment-meta-pill mb-3">
+                                <small class="text-muted d-block">Attachment Duration</small>
+                                <strong>{{ rec.attachment_duration }}</strong>
+                            </div>
+
+                            <!-- Action button -->
+                            {% if rec.recommendation_letter %}
+                            <a href="{{ rec.recommendation_letter.url }}" class="btn btn-primary-custom w-100" target="_blank" rel="noopener">
+                                <i class="fas fa-file-pdf me-2"></i> View Recommendation Letter
+                            </a>
+                            {% else %}
+                            <button type="button" class="btn btn-outline-custom w-100" data-bs-toggle="modal" data-bs-target="#recLetterModal">
+                                <i class="fas fa-file-alt me-2"></i> View Recommendation Details
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <!-- Default verified recommendation block -->
+        <div class="recommendation-card-wrapper animate-on-scroll" data-animation="slide-up">
+            <div class="recommendation-hero-card glass-card">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="recommendation-badge-icon"><i class="fas fa-award"></i></div>
+                            <div>
+                                <span class="badge badge-verified"><i class="fas fa-check-circle me-1"></i> Verified Attachment</span>
+                                <span class="recommendation-date text-muted ms-2"><i class="fas fa-calendar-alt me-1"></i> 20 July 2026</span>
+                            </div>
+                        </div>
+                        <blockquote class="recommendation-quote mb-4">
+                            "Pavis Mugo Muruga successfully completed a 13-week industrial attachment at the ICT Authority of Kenya from 4 May 2026 to 31 July 2026. He demonstrated exceptional enthusiasm, commitment, strong willingness to learn, and practical technical competency in Python, Django, ICT support, and system development."
+                        </blockquote>
+                        <div class="recommendation-highlights">
+                            <h5 class="highlights-title"><i class="fas fa-star me-2 text-accent"></i> Key Highlights Recognized:</h5>
+                            <div class="row g-2 mt-1">
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Enthusiasm & commitment</span></div></div>
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Proficiency in Python & Django</span></div></div>
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Strong willingness to learn</span></div></div>
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Solid ICT support & troubleshooting</span></div></div>
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Excellent problem-solving abilities</span></div></div>
+                                <div class="col-md-6"><div class="highlight-pill"><i class="fas fa-check-circle text-accent me-2"></i><span>Teamwork & effective communication</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="supervisor-profile-card glass-card text-center p-4">
+                            <div class="supervisor-avatar mb-3"><i class="fas fa-user-tie"></i></div>
+                            <h4 class="supervisor-name mb-1">Scholastica Mutuku</h4>
+                            <p class="supervisor-role text-accent mb-1">Software Engineer</p>
+                            <p class="supervisor-org mb-2">ICT Authority of Kenya</p>
+                            <p class="small text-muted mb-3">State Corporation under Kenya State Corporations Act 446</p>
+                            <div class="attachment-meta-pill mb-3">
+                                <small class="text-muted d-block">Attachment Duration</small>
+                                <strong>4 May 2026 – 31 July 2026 (13 Weeks)</strong>
+                            </div>
+                            <button type="button" class="btn btn-outline-custom w-100" data-bs-toggle="modal" data-bs-target="#recLetterModal">
+                                <i class="fas fa-file-alt me-2"></i> View Recommendation Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Recommendation Details Modal -->
+<div class="modal fade" id="recLetterModal" tabindex="-1" aria-labelledby="recLetterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recLetterModalLabel"><i class="fas fa-stamp text-accent me-2"></i> Official Recommendation Overview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="recommendation-letter-preview p-4 glass-card">
+                    <div class="text-center mb-4 border-bottom pb-3">
+                        <h4 class="mb-1 text-accent">ICT AUTHORITY OF KENYA</h4>
+                        <p class="small text-muted mb-0">State Corporation under Kenya State Corporations Act 446</p>
+                        <p class="small text-muted mb-0">Official Industrial Attachment Supervisor Recommendation</p>
+                    </div>
+
+                    <div class="row g-3 mb-3 small text-muted">
+                        <div class="col-sm-6">
+                            <strong>Candidate:</strong> Pavis Mugo Muruga<br>
+                            <strong>Course:</strong> BSc. in Information Technology (Kirinyaga University)
+                        </div>
+                        <div class="col-sm-6 text-sm-end">
+                            <strong>Date Issued:</strong> 20 July 2026<br>
+                            <strong>Attachment Period:</strong> 4 May 2026 – 31 July 2026 (13 Weeks)
+                        </div>
+                    </div>
+
+                    <p class="mt-3">
+                        This certifies that <strong>Pavis Mugo Muruga</strong> successfully completed a 13-week industrial attachment at the ICT Authority of Kenya. During his tenure, he contributed to:
+                    </p>
+                    <ul>
+                        <li>Python & Django Software Systems development (Library Management System, ICT Asset Management System, GBV System)</li>
+                        <li>Database operations, data modeling, and record administration</li>
+                        <li>ICT Support Services, hardware diagnostics, and network troubleshooting</li>
+                    </ul>
+                    <p class="mb-3">
+                        <strong>Supervisor Commendation:</strong> Scholastica Mutuku, Software Engineer at the ICT Authority of Kenya, highlighted Pavis's enthusiasm, commitment, strong problem-solving skills, rapid learning capability, and dedication to delivering quality work.
+                    </p>
+                    <div class="p-3 bg-secondary-custom rounded-3 text-center small text-muted">
+                        <i class="fas fa-lock me-1"></i> Official PDF letter document is uploaded and verified through Django Admin.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'cv_view' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-file-alt me-1"></i> View Pavis Mugo Muruga's Full CV
+                </a>
+                <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

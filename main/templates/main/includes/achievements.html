@@ -1,0 +1,43 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- ACHIEVEMENTS SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding" id="achievements">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-trophy me-2"></i>Achievements</span>
+            <h2 class="section-title">Notable Achievements</h2>
+            <div class="section-line"></div>
+        </div>
+
+        {% if achievements %}
+        <div class="row g-4">
+            {% for ach in achievements %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="achievement-card glass-card">
+                    <div class="achievement-icon">
+                        <i class="{{ ach.icon|default:'fas fa-trophy' }}"></i>
+                    </div>
+                    <span class="achievement-category badge-{{ ach.category }}">{{ ach.get_category_display }}</span>
+                    <h4 class="achievement-title">{{ ach.title }}</h4>
+                    {% if ach.description %}
+                    <p class="achievement-desc">{{ ach.description }}</p>
+                    {% endif %}
+                    {% if ach.date %}
+                    <p class="achievement-date"><i class="fas fa-calendar me-1"></i> {{ ach.date|date:"F Y" }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center animate-on-scroll" data-animation="fade-in">
+            <div class="empty-state glass-card">
+                <i class="fas fa-trophy empty-state-icon"></i>
+                <h4>Achievements will be added soon.</h4>
+                <p>I am building a portfolio of achievements through my academic and professional journey.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,60 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- GITHUB SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="github">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fab fa-github me-2"></i>GitHub</span>
+            <h2 class="section-title">Open Source & Code</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 animate-on-scroll" data-animation="slide-up">
+                <div class="github-card glass-card text-center">
+                    <div class="github-avatar">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="github-username">
+                        @{{ site.github_username|default:"YOUR_GITHUB_USERNAME" }}
+                    </h3>
+                    <p class="github-bio">
+                        Check out my repositories and contributions on GitHub. I share my projects, collaborate on open-source, and continuously push code.
+                    </p>
+
+                    <!-- GitHub Stats (populated via JS if username is set) -->
+                    <div class="github-stats" id="github-stats">
+                        <div class="github-stat">
+                            <span class="github-stat-value" id="gh-repos">—</span>
+                            <span class="github-stat-label">Repositories</span>
+                        </div>
+                        <div class="github-stat">
+                            <span class="github-stat-value" id="gh-followers">—</span>
+                            <span class="github-stat-label">Followers</span>
+                        </div>
+                        <div class="github-stat">
+                            <span class="github-stat-value" id="gh-following">—</span>
+                            <span class="github-stat-label">Following</span>
+                        </div>
+                    </div>
+
+                    {% if site.github_url %}
+                    <a href="{{ site.github_url }}" class="btn btn-primary-custom btn-lg mt-3" target="_blank" rel="noopener">
+                        <i class="fab fa-github me-2"></i> View GitHub Profile
+                    </a>
+                    {% else %}
+                    <a href="https://github.com/{{ site.github_username|default:'YOUR_GITHUB_USERNAME' }}" class="btn btn-primary-custom btn-lg mt-3" target="_blank" rel="noopener">
+                        <i class="fab fa-github me-2"></i> View GitHub Profile
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GitHub API data -->
+<script>
+    window.githubUsername = "{{ site.github_username|default:'YOUR_GITHUB_USERNAME'|escapejs }}";
+</script>

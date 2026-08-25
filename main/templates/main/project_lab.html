@@ -1,0 +1,175 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Project Lab | Pavis Mugo Muruga — Developer Workspace{% endblock %}
+{% block meta_description %}Developer workspace and Project Lab of Pavis Mugo Muruga showcasing software engineering architecture, live development pipelines, and technical systems.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'projects' %}" class="text-primary">Projects</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Project Lab</li>
+                    </ol>
+                </nav>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-primary text-white text-uppercase tracking-wider">Developer Workspace</span>
+                </div>
+                <h1 class="display-4 text-white fw-bold">PROJECT LAB</h1>
+                <p class="lead text-secondary mb-0">
+                    A developer workspace highlighting software engineering methodologies, database design, and ongoing feature pipelines.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'playground' %}" class="btn btn-outline-custom">
+                    <i class="fas fa-flask me-2"></i> Tech Playground
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKSPACE CONTENT -->
+<section class="section-padding" id="lab-workspace">
+    <div class="container">
+        
+        <!-- Live Workspace Header Status -->
+        <div class="glass-card p-4 rounded-4 mb-5 border-start border-4 border-info">
+            <div class="row align-items-center g-3">
+                <div class="col-md-8">
+                    <h4 class="text-white fw-bold mb-1"><i class="fas fa-terminal text-info me-2"></i> Engineering Workspace Status</h4>
+                    <p class="text-light opacity-90 small mb-0">
+                        Tracking production deployments, attachment systems, and active software sprints. All metrics derived from verified database records.
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div class="d-inline-flex gap-2">
+                        <span class="badge bg-success-subtle text-success px-3 py-2">🟢 LIVE</span>
+                        <span class="badge bg-primary-subtle text-primary px-3 py-2">🔵 IN DEV</span>
+                        <span class="badge bg-warning-subtle text-warning px-3 py-2">🟡 TESTING</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. DEPLOYED SYSTEMS & CASE STUDIES -->
+        <div class="section-header text-start mb-4">
+            <span class="section-tag">Software Systems</span>
+            <h2 class="section-title text-white">Full-Stack Application Builds</h2>
+        </div>
+
+        <div class="row g-4 mb-5">
+            {% for p in projects %}
+            <div class="col-lg-6">
+                <div class="glass-card p-4 p-md-5 rounded-4 h-100 d-flex flex-column border border-secondary border-opacity-25 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                        <div>
+                            <span class="badge {{ p.status_badge_class }} mb-2">
+                                {{ p.get_status_display }}
+                            </span>
+                            <h3 class="text-white fw-bold fs-4 mb-1">{{ p.title }}</h3>
+                            <span class="text-primary small fw-semibold"><i class="fas fa-user-cog me-1"></i> {{ p.role }}</span>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25">{{ p.get_category_display }}</span>
+                        </div>
+                    </div>
+
+                    <p class="text-light opacity-90 small mb-3" style="line-height: 1.6;">
+                        {{ p.overview|default:p.short_description }}
+                    </p>
+
+                    <!-- Problem & Solution Block -->
+                    {% if p.problem %}
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 mb-3">
+                        <strong class="text-danger small d-block mb-1"><i class="fas fa-exclamation-circle me-1"></i> Problem Solved:</strong>
+                        <p class="text-light opacity-90 small mb-0">{{ p.problem|truncatewords:25 }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Key Features -->
+                    <div class="mb-3">
+                        <strong class="text-white small d-block mb-2"><i class="fas fa-check-square text-success me-1"></i> Key Features:</strong>
+                        <ul class="list-unstyled d-flex flex-column gap-1 text-light opacity-90 small mb-0">
+                            {% for feature in p.get_features_list|slice:":3" %}
+                            <li><i class="fas fa-caret-right text-primary me-2"></i> {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="mb-4">
+                        <strong class="text-white small d-block mb-2">Technologies:</strong>
+                        <div class="d-flex flex-wrap gap-1">
+                            {% for tech in p.get_technologies_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div class="mt-auto pt-3 border-top border-secondary border-opacity-25 d-flex gap-2">
+                        <a href="{% url 'project_detail' p.slug %}" class="btn btn-primary-custom btn-sm flex-grow-1">
+                            <i class="fas fa-book-open me-1"></i> Full Case Study
+                        </a>
+                        {% if p.live_url %}
+                        <a href="{{ p.live_url }}" class="btn btn-outline-custom btn-sm" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                        </a>
+                        {% endif %}
+                        {% if p.github_url %}
+                        <a href="{{ p.github_url }}" class="btn btn-secondary-custom btn-sm" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                            <i class="fab fa-github me-1"></i> GitHub
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- 2. CURRENTLY BUILDING PIPELINE -->
+        {% if currently_building %}
+        <div class="section-header text-start mb-4">
+            <span class="section-tag">Active Sprints</span>
+            <h2 class="section-title text-white">Currently Building &amp; Prototyping</h2>
+        </div>
+
+        <div class="row g-4">
+            {% for item in currently_building %}
+            <div class="col-md-6">
+                <div class="glass-card p-4 rounded-4 h-100 border-start border-4 border-warning">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h4 class="text-white fw-bold fs-5 mb-0">{{ item.name }}</h4>
+                        <span class="badge bg-warning text-dark fw-bold">{{ item.status }}</span>
+                    </div>
+                    <p class="text-light opacity-90 small mb-3" style="line-height: 1.6;">{{ item.description }}</p>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between text-light opacity-90 small mb-1">
+                            <span>Development Progress</span>
+                            <span class="text-warning fw-bold">{{ item.progress_percent }}%</span>
+                        </div>
+                        <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.1);">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ item.progress_percent }}%;" aria-valuenow="{{ item.progress_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-light opacity-90 small">
+                        <strong class="text-white">Stack:</strong> {{ item.technologies }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

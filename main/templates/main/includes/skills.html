@@ -1,0 +1,179 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- SKILLS SECTION -->
+<!-- ============================================================ -->
+<section class="section-padding section-alt" id="skills">
+    <div class="container">
+        <div class="section-header animate-on-scroll" data-animation="fade-in">
+            <span class="section-tag"><i class="fas fa-tools me-2"></i>Technical & Practical Skills</span>
+            <h2 class="section-title">My Tech Stack & Capabilities</h2>
+            <div class="section-line"></div>
+            <p class="section-subtitle">
+                A combination of programming, framework development, database design, data capturing & management, and practical ICT support.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% if skills_programming %}
+            <!-- Programming Languages -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_programming %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_framework %}
+            <!-- Frameworks -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Frameworks & Web</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_framework %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_database %}
+            <!-- Databases -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Databases & Modeling</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_database %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_data %}
+            <!-- Data & Information Management (Data Capturing) -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-keyboard"></i>
+                        <h3>Data & Information Management</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_data %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_it %}
+            <!-- IT & Systems Support -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-headset"></i>
+                        <h3>IT Support & Systems</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_it %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_tool %}
+            <!-- Tools & Workflow -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-wrench"></i>
+                        <h3>Tools & Environment</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_tool %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if skills_other %}
+            <!-- Additional & Professional Strengths -->
+            <div class="col-lg-4 col-md-6 animate-on-scroll" data-animation="slide-up">
+                <div class="skill-category-card glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h3>Additional Strengths</h3>
+                    </div>
+                    <div class="skill-list">
+                        {% for skill in skills_other %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                {% if skill.icon %}<i class="{{ skill.icon }} text-accent me-2"></i>{% endif %}
+                                <span class="skill-name">{{ skill.name }}</span>
+                            </div>
+                            <span class="skill-level level-{{ skill.level }}">{{ skill.get_level_display }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

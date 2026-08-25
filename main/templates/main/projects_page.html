@@ -1,0 +1,177 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Projects | Pavis Mugo Muruga — Systems, Django &amp; Web Apps{% endblock %}
+{% block meta_description %}Explore full project portfolio of Pavis Mugo Muruga: GBV Safe Space System, Library Management System, ICT Asset Management, and Web Applications with live demos and case studies.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Projects</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 text-white fw-bold">Projects &amp; Case Studies</h1>
+                <p class="lead text-secondary mb-0">
+                    Comprehensive showcase of deployed software platforms, industrial attachment systems, and web applications.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'project_lab' %}" class="btn btn-outline-custom">
+                    <i class="fas fa-laptop-code me-2"></i> Enter Project Lab
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS MAIN SECTION -->
+<section class="section-padding" id="projects-list">
+    <div class="container">
+        
+        <!-- Filter Bar & Search -->
+        <div class="glass-card p-4 rounded-4 mb-5 shadow-sm">
+            <form method="get" action="{% url 'projects' %}" class="row g-3 align-items-center">
+                <!-- Search input -->
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark-subtle border-secondary border-opacity-25 text-muted">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" name="q" value="{{ search_query }}" class="form-control bg-dark-subtle text-white border-secondary border-opacity-25" placeholder="Search by title, role or technology...">
+                    </div>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="col-md-7">
+                    <div class="d-flex flex-wrap gap-2 justify-content-md-end">
+                        <a href="{% url 'projects' %}" class="btn btn-sm {% if category_filter == 'all' or not category_filter %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">
+                            ALL
+                        </a>
+                        <a href="{% url 'projects' %}?category=django" class="btn btn-sm {% if category_filter == 'django' %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">
+                            DJANGO
+                        </a>
+                        <a href="{% url 'projects' %}?category=python" class="btn btn-sm {% if category_filter == 'python' %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">
+                            PYTHON
+                        </a>
+                        <a href="{% url 'projects' %}?category=web" class="btn btn-sm {% if category_filter == 'web' %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">
+                            WEB
+                        </a>
+                        <a href="{% url 'projects' %}?category=database" class="btn btn-sm {% if category_filter == 'database' %}btn-primary-custom{% else %}btn-outline-custom{% endif %}">
+                            DATABASE
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Projects Grid -->
+        {% if projects %}
+        <div class="row g-4">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card glass-card h-100 d-flex flex-column rounded-4 overflow-hidden shadow-sm">
+                    <div class="project-image-wrapper position-relative">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img" loading="lazy">
+                        {% else %}
+                        <div class="project-img-placeholder d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-laptop-code display-4 text-primary opacity-50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="project-status-tag">
+                            <span class="badge {{ project.status_badge_class }}">
+                                {{ project.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="project-body p-4 d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-primary-subtle text-primary small text-uppercase fw-bold">{{ project.get_category_display }}</span>
+                            <span class="text-muted small"><i class="fas fa-user-tag me-1"></i> {{ project.role }}</span>
+                        </div>
+
+                        <h3 class="project-title text-white fw-bold fs-5 mb-2">{{ project.title }}</h3>
+                        <p class="project-desc text-secondary small flex-grow-1 mb-3">
+                            {{ project.short_description }}
+                        </p>
+
+                        <!-- Tech tags -->
+                        <div class="project-tech-tags mb-4">
+                            {% for tech in project.get_technologies_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="project-actions d-flex gap-2 pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                            <a href="{% url 'project_detail' project.slug %}" class="btn btn-primary-custom btn-sm flex-grow-1">
+                                <i class="fas fa-info-circle me-1"></i> Case Study
+                            </a>
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-outline-custom btn-sm" target="_blank" rel="noopener noreferrer" title="Open Live Deployed Web App in new tab">
+                                <i class="fas fa-external-link-alt me-1"></i> Live Demo
+                            </a>
+                            {% endif %}
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn btn-secondary-custom btn-sm" target="_blank" rel="noopener noreferrer" title="View Source Code on GitHub">
+                                <i class="fab fa-github me-1"></i> GitHub
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if projects.has_other_pages %}
+        <nav aria-label="Projects page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if projects.has_previous %}
+                <li class="page-item">
+                    <a class="page-link bg-dark text-white border-secondary" href="?page={{ projects.previous_page_number }}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">
+                        &laquo; Previous
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in projects.paginator.page_range %}
+                <li class="page-item {% if projects.number == num %}active{% endif %}">
+                    <a class="page-link {% if projects.number == num %}bg-primary text-white border-primary{% else %}bg-dark text-white border-secondary{% endif %}" href="?page={{ num }}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">
+                        {{ num }}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% if projects.has_next %}
+                <li class="page-item">
+                    <a class="page-link bg-dark text-white border-secondary" href="?page={{ projects.next_page_number }}{% if category_filter %}&category={{ category_filter }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">
+                        Next &raquo;
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="glass-card p-5 rounded-4 text-center my-4">
+            <i class="fas fa-folder-open display-4 text-muted mb-3"></i>
+            <h4 class="text-white fw-bold">No Projects Found</h4>
+            <p class="text-muted">Try clearing your search query or selecting a different category filter.</p>
+            <a href="{% url 'projects' %}" class="btn btn-outline-custom">View All Projects</a>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

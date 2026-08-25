@@ -1,0 +1,127 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Accessibility Statement | Pavis Mugo Muruga{% endblock %}
+{% block meta_description %}Accessibility compliance statement and features implemented on Pavis Mugo Muruga's personal portfolio website.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="page-hero-section py-5 bg-card-subtle border-bottom border-secondary border-opacity-25" style="margin-top: 70px;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Home</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">Accessibility Statement</li>
+                    </ol>
+                </nav>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-success text-white"><i class="fas fa-universal-access me-1"></i> Inclusive Design</span>
+                </div>
+                <h1 class="display-4 text-white fw-bold">Accessibility Statement</h1>
+                <p class="lead text-secondary mb-0">
+                    Commitment to digital accessibility, universal usability, and WCAG standards compliance.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'contact' %}" class="btn btn-outline-custom">
+                    <i class="fas fa-comment-alt me-2"></i> Report an Accessibility Issue
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATEMENT CONTENT -->
+<section class="section-padding" id="statement-details">
+    <div class="container">
+        
+        <div class="glass-card p-4 p-md-5 rounded-4 mb-5 shadow-sm">
+            <h3 class="text-white fw-bold fs-4 mb-3">Our Commitment to Universal Access</h3>
+            <p class="text-secondary mb-4">
+                <strong>Pavis Mugo Muruga</strong> is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards including the <em>Web Content Accessibility Guidelines (WCAG) 2.1</em> Level AA principles.
+            </p>
+
+            <h4 class="text-white fw-bold fs-5 mb-3 pt-3 border-top border-secondary border-opacity-25">
+                <i class="fas fa-tools text-primary me-2"></i> Built-in Accessibility Features &amp; Tools
+            </h4>
+
+            <div class="row g-4 mb-4">
+                <!-- 1. Keyboard Navigation -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-keyboard text-primary me-2"></i> Full Keyboard Navigation</h5>
+                        <p class="text-muted small mb-0">
+                            Every interactive element, button, navigation link, form field, and modal can be fully operated using standard keyboard keys (<kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Space</kbd>, <kbd>Esc</kbd>).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Text Scaling -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-text-height text-info me-2"></i> Controlled Text Sizing</h5>
+                        <p class="text-muted small mb-0">
+                            The floating Accessibility Bar provides <kbd>A-</kbd>, <kbd>A</kbd>, and <kbd>A+</kbd> font scaling (80% to 130%) without breaking visual layouts or truncating text.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. High Contrast Mode -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-adjust text-warning me-2"></i> High Contrast Mode</h5>
+                        <p class="text-muted small mb-0">
+                            A dedicated high-contrast mode increases foreground-to-background color separation and reinforces crisp component borders for maximum legibility.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Dyslexia Font -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-font text-success me-2"></i> Dyslexia-Friendly Typography</h5>
+                        <p class="text-muted small mb-0">
+                            Optional typography switch to *Atkinson Hyperlegible* and *Lexend* with widened letter-spacing and optimized line-height for enhanced reading comprehension.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Reduced Motion -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-ban text-danger me-2"></i> Reduced Motion &amp; Animations</h5>
+                        <p class="text-muted small mb-0">
+                            Disables decorative background floaters, keyframe animations, and smooth scrolling for visitors with vestibular disorders, respecting OS preferences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Screen Reader ARIA Semantics -->
+                <div class="col-md-6">
+                    <div class="p-3 rounded-3 bg-dark-subtle border border-secondary border-opacity-25 h-100">
+                        <h5 class="text-white fw-bold fs-6 mb-2"><i class="fas fa-eye text-primary me-2"></i> Screen Reader Support</h5>
+                        <p class="text-muted small mb-0">
+                            Equipped with semantic HTML5 elements (`<header>`, `<main>`, `<nav>`, `<footer>`), structured ARIA live regions, `aria-expanded`, and descriptive labels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback & Contact -->
+            <div class="p-4 rounded-3 bg-dark-subtle border border-primary border-opacity-25 text-center mt-4">
+                <h4 class="text-white fw-bold fs-5 mb-2">Report an Accessibility Barrier</h4>
+                <p class="text-secondary small mb-3 mx-auto" style="max-width: 600px;">
+                    We welcome feedback on the accessibility of this website. If you encounter accessibility barriers, please let us know so we can resolve them promptly.
+                </p>
+                <a href="{% url 'contact' %}" class="btn btn-primary-custom">
+                    <i class="fas fa-envelope me-2"></i> Contact Accessibility Support
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
