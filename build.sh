@@ -14,3 +14,6 @@ python manage.py migrate
 
 # Seed initial portfolio data if database is empty
 python manage.py seed_data
+
+# Link media files (profile photo, project screenshots) to database records
+python manage.py link_media_files
