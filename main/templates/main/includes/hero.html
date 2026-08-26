@@ -119,7 +119,25 @@
             </div>
 
             <!-- Profile Image / Developer Graphic -->
+            <div class="col-12 d-lg-none text-center mb-4 order-first">
+                <!-- Mobile: Centered profile photo above hero text -->
+                <div class="hero-image-wrapper animate-on-scroll" data-animation="fade-in">
+                    <div class="hero-image-container hero-image-mobile">
+                        {% if site.profile_image %}
+                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="hero-image" loading="lazy">
+                        {% else %}
+                        <div class="hero-image-placeholder">
+                            <i class="fas fa-laptop-code display-4 text-accent mb-2"></i>
+                            <h5 class="mb-1">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h5>
+                            <p class="small text-light opacity-90 mb-0">Kirinyaga University &bull; Year 2</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
             <div class="col-lg-5 d-none d-lg-block">
+                <!-- Desktop: Right-side profile photo -->
                 <div class="hero-image-wrapper animate-on-scroll" data-animation="fade-in">
                     <div class="hero-image-container">
                         {% if site.profile_image %}
