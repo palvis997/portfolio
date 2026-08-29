@@ -67,9 +67,7 @@
                             {% if site.profile_image %}
                             <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" loading="lazy">
                             {% else %}
-                            <div class="avatar-placeholder">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
+                            <img src="/media/images/profile%203.jpeg" alt="{{ site.full_name|default:'Pavis Mugo Muruga' }}" loading="lazy">
                             {% endif %}
                         </div>
                         <h3 class="about-card-name">{{ site.full_name|default:"Pavis Mugo Muruga" }}</h3>

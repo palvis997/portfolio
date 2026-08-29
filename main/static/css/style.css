@@ -2874,6 +2874,46 @@ h1, h2, h3, h4, h5, h6 {
         background: #f3f4f6 !important;
         border: 1px solid #e5e7eb !important;
     }
+}
+
+/* ============================================================
+   HEADER VISIBILITY OVERRIDES
+   ============================================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.page-hero-section .display-4,
+.page-hero-section .display-5,
+.project-title,
+.service-title,
+.contact-info-title,
+.cta-title,
+.cv-section-title,
+.footer-heading {
+    color: #ffffff !important;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .section-title,
+[data-theme="light"] .page-hero-section .display-4,
+[data-theme="light"] .page-hero-section .display-5,
+[data-theme="light"] .project-title,
+[data-theme="light"] .service-title,
+[data-theme="light"] .contact-info-title,
+[data-theme="light"] .cta-title,
+[data-theme="light"] .cv-section-title,
+[data-theme="light"] .footer-heading {
+    color: #ffffff !important;
+}
     
 /* ============================================================
    10. ACCESSIBILITY BAR & USER PREFERENCE OVERRIDES
@@ -3426,5 +3466,4 @@ html[data-keyboard-nav="true"] *:focus-visible,
 .breadcrumb-item a:hover {
     text-decoration: underline;
 }
-
 

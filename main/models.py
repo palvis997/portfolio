@@ -73,7 +73,7 @@ class SiteSettings(models.Model):
 
     # Files & Media
     profile_image = models.ImageField(
-        upload_to='profile/', blank=True, validators=[validate_avatar_file],
+        upload_to='profile/', blank=True, default='images/profile 3.jpeg', validators=[validate_avatar_file],
         help_text='Profile photo for Hero and About sections (JPG, PNG, WEBP max 3MB)'
     )
     resume = models.FileField(
@@ -800,4 +800,3 @@ class TimelineEvent(models.Model):
 
     def __str__(self):
         return f'{self.date} — {self.title}'
-

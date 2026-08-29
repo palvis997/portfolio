@@ -50,6 +50,7 @@ class Command(BaseCommand):
         site.github_username = "palvis997"
         site.github_url = "https://github.com/palvis997"
         site.linkedin_url = ""
+        site.profile_image = "images/profile 3.jpeg"
         site.footer_tagline = "Building practical solutions. Learning continuously. Growing as a developer."
         site.whatsapp_message = "Hello Pavis, I visited your portfolio and would like to connect with you."
         site.save()
