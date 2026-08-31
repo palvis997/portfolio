@@ -3324,14 +3324,101 @@ html[data-highlight-links="true"] a {
     border-radius: 3px !important;
 }
 
-/* 6. Readable Font */
-html[data-readable-font="true"],
-html[data-readable-font="true"] body,
-html[data-readable-font="true"] button,
-html[data-readable-font="true"] input,
-html[data-readable-font="true"] textarea,
-html[data-readable-font="true"] select {
-    font-family: Arial, Helvetica, "Segoe UI", sans-serif !important;
+/* 6. Font Styles */
+html[data-font-style="inter"],
+html[data-font-style="inter"] body,
+html[data-font-style="inter"] h1,
+html[data-font-style="inter"] h2,
+html[data-font-style="inter"] h3,
+html[data-font-style="inter"] h4,
+html[data-font-style="inter"] h5,
+html[data-font-style="inter"] h6,
+html[data-font-style="inter"] p,
+html[data-font-style="inter"] button,
+html[data-font-style="inter"] input,
+html[data-font-style="inter"] select,
+html[data-font-style="inter"] textarea {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+html[data-font-style="open-sans"],
+html[data-font-style="open-sans"] body,
+html[data-font-style="open-sans"] h1,
+html[data-font-style="open-sans"] h2,
+html[data-font-style="open-sans"] h3,
+html[data-font-style="open-sans"] h4,
+html[data-font-style="open-sans"] h5,
+html[data-font-style="open-sans"] h6,
+html[data-font-style="open-sans"] p,
+html[data-font-style="open-sans"] button,
+html[data-font-style="open-sans"] input,
+html[data-font-style="open-sans"] select,
+html[data-font-style="open-sans"] textarea {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+html[data-font-style="lexend"],
+html[data-font-style="lexend"] body,
+html[data-font-style="lexend"] h1,
+html[data-font-style="lexend"] h2,
+html[data-font-style="lexend"] h3,
+html[data-font-style="lexend"] h4,
+html[data-font-style="lexend"] h5,
+html[data-font-style="lexend"] h6,
+html[data-font-style="lexend"] p,
+html[data-font-style="lexend"] button,
+html[data-font-style="lexend"] input,
+html[data-font-style="lexend"] select,
+html[data-font-style="lexend"] textarea {
+    font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+html[data-font-style="georgia"],
+html[data-font-style="georgia"] body,
+html[data-font-style="georgia"] h1,
+html[data-font-style="georgia"] h2,
+html[data-font-style="georgia"] h3,
+html[data-font-style="georgia"] h4,
+html[data-font-style="georgia"] h5,
+html[data-font-style="georgia"] h6,
+html[data-font-style="georgia"] p,
+html[data-font-style="georgia"] button,
+html[data-font-style="georgia"] input,
+html[data-font-style="georgia"] select,
+html[data-font-style="georgia"] textarea {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+html[data-font-style="atkinson"],
+html[data-font-style="atkinson"] body,
+html[data-font-style="atkinson"] h1,
+html[data-font-style="atkinson"] h2,
+html[data-font-style="atkinson"] h3,
+html[data-font-style="atkinson"] h4,
+html[data-font-style="atkinson"] h5,
+html[data-font-style="atkinson"] h6,
+html[data-font-style="atkinson"] p,
+html[data-font-style="atkinson"] button,
+html[data-font-style="atkinson"] input,
+html[data-font-style="atkinson"] select,
+html[data-font-style="atkinson"] textarea {
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+html[data-font-style="system"],
+html[data-font-style="system"] body,
+html[data-font-style="system"] h1,
+html[data-font-style="system"] h2,
+html[data-font-style="system"] h3,
+html[data-font-style="system"] h4,
+html[data-font-style="system"] h5,
+html[data-font-style="system"] h6,
+html[data-font-style="system"] p,
+html[data-font-style="system"] button,
+html[data-font-style="system"] input,
+html[data-font-style="system"] select,
+html[data-font-style="system"] textarea {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 /* 7. Line Spacing */

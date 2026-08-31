@@ -4,18 +4,18 @@
    RESPONSIVE ACCESSIBILITY SIDE PANEL (REFLOW & RESIZE)
    ============================================================ */
 :root {
-    --a11y-panel-width: 300px;
+    --a11y-panel-width: 340px;
 }
 
 @media (max-width: 991.98px) {
     :root {
-        --a11y-panel-width: 280px;
+        --a11y-panel-width: 320px;
     }
 }
 
 @media (max-width: 767.98px) {
     :root {
-        --a11y-panel-width: min(300px, 80vw);
+        --a11y-panel-width: min(340px, 88vw);
     }
 }
 
@@ -137,7 +137,114 @@ body.a11y-drawer-open .a11y-panel {
     padding: 16px 18px !important;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
+}
+
+/* Voice box active styling */
+.a11y-voice-btn.listening {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    animation: a11y-pulse-mic 1.5s infinite;
+    border-color: #f87171 !important;
+}
+
+@keyframes a11y-pulse-mic {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Font option cards */
+.a11y-font-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.a11y-font-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.a11y-font-card:hover {
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.a11y-font-card.active {
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+.a11y-font-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.a11y-font-desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Command chips */
+.a11y-command-chip {
+    display: inline-block;
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin: 2px;
+}
+
+/* Quick Nav */
+.a11y-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.a11y-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.a11y-nav-link:hover {
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-color: var(--accent-primary);
+}
+
+/* Shortcut badge */
+.a11y-kbd {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 0.72rem;
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 4px;
+    color: var(--accent-primary);
 }
 
 @media (max-width: 767.98px) {
@@ -154,7 +261,7 @@ body.a11y-drawer-open .a11y-panel {
     <!-- Floating Trigger Button (ONLY ♿ ICON) -->
     <button class="a11y-trigger-btn" id="a11y-toggle-btn" type="button"
             aria-expanded="false" aria-controls="a11y-panel"
-            aria-label="Accessibility Options" title="Accessibility Options">
+            aria-label="Accessibility Options" title="Accessibility Options (Alt+A)">
         <span class="a11y-trigger-icon" aria-hidden="true">♿</span>
     </button>
 
@@ -167,8 +274,8 @@ body.a11y-drawer-open .a11y-panel {
                     <span aria-hidden="true" style="font-size: 1.25rem;">♿</span>
                 </div>
                 <div>
-                    <h3 class="a11y-panel-title mb-0 fs-6 fw-bold" id="a11y-panel-title">Accessibility Options</h3>
-                    <span class="a11y-panel-subtitle small text-muted">Customize display &amp; reading</span>
+                    <h3 class="a11y-panel-title mb-0 fs-6 fw-bold" id="a11y-panel-title">Accessibility Tools</h3>
+                    <span class="a11y-panel-subtitle small text-muted">Customize display, voice &amp; reading</span>
                 </div>
             </div>
             <button class="a11y-close-btn" id="a11y-close-btn" type="button" aria-label="Close accessibility options">
@@ -181,10 +288,10 @@ body.a11y-drawer-open .a11y-panel {
             <!-- Toast notification inside panel -->
             <div class="a11y-toast" id="a11y-toast" role="status" aria-live="polite" style="display: none;">
                 <i class="fas fa-check-circle me-1" aria-hidden="true"></i>
-                <span id="a11y-toast-text">Settings restored to default.</span>
+                <span id="a11y-toast-text">Settings updated.</span>
             </div>
 
-            <!-- Group 1: Text Sizing (1. Text Size + / 2. Text Size -) -->
+            <!-- SECTION 1: Vision / Aa Text Size -->
             <div class="a11y-group">
                 <div class="a11y-group-title">
                     <span><i class="fas fa-text-height me-1 text-primary" aria-hidden="true"></i> Text Size</span>
@@ -192,24 +299,124 @@ body.a11y-drawer-open .a11y-panel {
                 </div>
                 <div class="a11y-btn-group">
                     <button type="button" class="a11y-btn" id="a11y-font-decrease" aria-label="Decrease text size" title="Text Size -">
-                        <span class="fw-bold">A-</span>
+                        <span class="fw-bold fs-6">A-</span>
                         <small>Decrease</small>
                     </button>
                     <button type="button" class="a11y-btn" id="a11y-font-reset" aria-label="Reset text size" title="Default Text Size">
-                        <span class="fw-bold">A</span>
-                        <small>Default</small>
+                        <span class="fw-bold fs-6">Default</span>
+                        <small>100%</small>
                     </button>
                     <button type="button" class="a11y-btn" id="a11y-font-increase" aria-label="Increase text size" title="Text Size +">
-                        <span class="fw-bold">A+</span>
+                        <span class="fw-bold fs-6">A+</span>
                         <small>Increase</small>
                     </button>
                 </div>
             </div>
 
-            <!-- Group 2: Visual Adjustments (3. High Contrast / 4. Grayscale / 5. Highlight Links / 6. Readable Font) -->
+            <!-- SECTION 2: Font Style (Pick a font that's easier for you to read) -->
             <div class="a11y-group">
                 <div class="a11y-group-title">
-                    <span><i class="fas fa-eye me-1 text-primary" aria-hidden="true"></i> Visual Adjustments</span>
+                    <span><i class="fas fa-font me-1 text-primary" aria-hidden="true"></i> Font Style</span>
+                    <span class="small text-muted" style="font-size: 0.7rem;">Choose for readability</span>
+                </div>
+                <div class="a11y-font-grid">
+                    <button type="button" class="a11y-font-card active" data-font="inter" id="font-opt-inter" aria-label="Inter Font - Clean and Modern">
+                        <span class="a11y-font-name" style="font-family: 'Inter', sans-serif;">Inter</span>
+                        <span class="a11y-font-desc">Clean / Modern</span>
+                    </button>
+                    <button type="button" class="a11y-font-card" data-font="open-sans" id="font-opt-open-sans" aria-label="Open Sans Font - Friendly and Clear">
+                        <span class="a11y-font-name" style="font-family: 'Open Sans', sans-serif;">Open Sans</span>
+                        <span class="a11y-font-desc">Friendly / Clear</span>
+                    </button>
+                    <button type="button" class="a11y-font-card" data-font="lexend" id="font-opt-lexend" aria-label="Lexend Font - Dyslexia Friendly">
+                        <span class="a11y-font-name" style="font-family: 'Lexend', sans-serif;">Lexend</span>
+                        <span class="a11y-font-desc">Dyslexia-friendly</span>
+                    </button>
+                    <button type="button" class="a11y-font-card" data-font="georgia" id="font-opt-georgia" aria-label="Georgia Font - Warm and Classic">
+                        <span class="a11y-font-name" style="font-family: Georgia, serif;">Georgia</span>
+                        <span class="a11y-font-desc">Warm / Classic</span>
+                    </button>
+                    <button type="button" class="a11y-font-card" data-font="atkinson" id="font-opt-atkinson" aria-label="Atkinson Font - Hyperlegible">
+                        <span class="a11y-font-name" style="font-family: 'Atkinson Hyperlegible', sans-serif;">Atkinson</span>
+                        <span class="a11y-font-desc">Hyperlegible</span>
+                    </button>
+                    <button type="button" class="a11y-font-card" data-font="system" id="font-opt-system" aria-label="System Default Font">
+                        <span class="a11y-font-name">System</span>
+                        <span class="a11y-font-desc">Default Font</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Voice Control (Speech Recognition) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-microphone-alt me-1 text-primary" aria-hidden="true"></i> Voice Control</span>
+                    <span class="badge bg-secondary-custom small" id="a11y-voice-status">Alt+V</span>
+                </div>
+                <div class="p-2 bg-secondary-custom rounded-3">
+                    <button type="button" class="btn btn-primary-custom w-100 py-2 d-flex align-items-center justify-content-center gap-2 a11y-voice-btn mb-2" id="a11y-voice-toggle" aria-label="Start voice commands">
+                        <i class="fas fa-microphone" id="a11y-voice-icon"></i>
+                        <span id="a11y-voice-btn-text" class="fw-bold">Start Voice Control</span>
+                    </button>
+                    <div class="small text-muted mb-2 text-center" id="a11y-voice-feedback" style="min-height: 18px; font-size: 0.75rem;">
+                        Click above or press <kbd class="a11y-kbd">Alt+V</kbd> and speak
+                    </div>
+                    <div class="small text-secondary" style="font-size: 0.72rem;">
+                        <strong>Say commands like:</strong>
+                        <div class="mt-1">
+                            <span class="a11y-command-chip">"Go home"</span>
+                            <span class="a11y-command-chip">"Go to projects"</span>
+                            <span class="a11y-command-chip">"Go to skills"</span>
+                            <span class="a11y-command-chip">"View CV"</span>
+                            <span class="a11y-command-chip">"Go to dashboard"</span>
+                            <span class="a11y-command-chip">"Contact"</span>
+                            <span class="a11y-command-chip">"Dark mode"</span>
+                            <span class="a11y-command-chip">"Light mode"</span>
+                            <span class="a11y-command-chip">"Read page"</span>
+                            <span class="a11y-command-chip">"Stop reading"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: Read Page Aloud (Speech Synthesis) -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-volume-up me-1 text-primary" aria-hidden="true"></i> Read Page Aloud</span>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-success-custom flex-grow-1 py-2 d-flex align-items-center justify-content-center gap-2" id="a11y-read-play" aria-label="Read page content aloud">
+                        <i class="fas fa-volume-up"></i>
+                        <span class="fw-bold">Read Page</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary-custom py-2 d-flex align-items-center justify-content-center gap-2" id="a11y-read-stop" aria-label="Stop reading aloud">
+                        <i class="fas fa-stop"></i>
+                        <span>Stop</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION 5: Quick Navigate -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-compass me-1 text-primary" aria-hidden="true"></i> Quick Navigate</span>
+                </div>
+                <div class="a11y-nav-grid">
+                    <a href="{% url 'home' %}" class="a11y-nav-link"><i class="fas fa-home text-primary"></i> Home</a>
+                    <a href="{% url 'about' %}" class="a11y-nav-link"><i class="fas fa-user text-info"></i> About</a>
+                    <a href="{% url 'skills' %}" class="a11y-nav-link"><i class="fas fa-tools text-warning"></i> Skills</a>
+                    <a href="{% url 'projects' %}" class="a11y-nav-link"><i class="fas fa-layer-group text-success"></i> Projects</a>
+                    <a href="{% url 'resume' %}" class="a11y-nav-link"><i class="fas fa-file-alt text-danger"></i> View CV</a>
+                    <a href="{% url 'dashboard' %}" class="a11y-nav-link"><i class="fas fa-tachometer-alt text-primary"></i> Dashboard</a>
+                    <a href="{% url 'credentials' %}" class="a11y-nav-link"><i class="fas fa-certificate text-warning"></i> Credentials</a>
+                    <a href="{% url 'contact' %}" class="a11y-nav-link"><i class="fas fa-envelope text-info"></i> Contact</a>
+                </div>
+            </div>
+
+            <!-- SECTION 6: Motion & Visual Adjustments -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-sliders-h me-1 text-primary" aria-hidden="true"></i> Motion &amp; More</span>
                 </div>
                 <div class="row g-2">
                     <div class="col-6">
@@ -234,21 +441,12 @@ body.a11y-drawer-open .a11y-panel {
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="a11y-toggle-card" id="a11y-readable-font" aria-pressed="false">
-                            <i class="fas fa-font a11y-card-icon" aria-hidden="true"></i>
-                            <span class="a11y-card-label">Readable Font</span>
+                        <button type="button" class="a11y-toggle-card" id="a11y-large-cursor" aria-pressed="false">
+                            <i class="fas fa-mouse-pointer a11y-card-icon" aria-hidden="true"></i>
+                            <span class="a11y-card-label">Large Cursor</span>
                             <span class="a11y-status-dot" aria-hidden="true"></span>
                         </button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Group 3: Spacing & Cursor (7. Line Spacing / 8. Letter Spacing / 9. Large Cursor) -->
-            <div class="a11y-group">
-                <div class="a11y-group-title">
-                    <span><i class="fas fa-arrows-alt-v me-1 text-primary" aria-hidden="true"></i> Spacing &amp; Cursor</span>
-                </div>
-                <div class="row g-2">
                     <div class="col-6">
                         <button type="button" class="a11y-toggle-card" id="a11y-line-spacing" aria-pressed="false">
                             <i class="fas fa-align-justify a11y-card-icon" aria-hidden="true"></i>
@@ -263,22 +461,6 @@ body.a11y-drawer-open .a11y-panel {
                             <span class="a11y-status-dot" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <div class="col-12">
-                        <button type="button" class="a11y-toggle-card" id="a11y-large-cursor" aria-pressed="false">
-                            <i class="fas fa-mouse-pointer a11y-card-icon" aria-hidden="true"></i>
-                            <span class="a11y-card-label">Large Cursor</span>
-                            <span class="a11y-status-dot" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Group 4: Interaction & Voice (10. Stop Animations / 11. Read Aloud / 12. Keyboard Navigation) -->
-            <div class="a11y-group">
-                <div class="a11y-group-title">
-                    <span><i class="fas fa-tools me-1 text-primary" aria-hidden="true"></i> Interaction &amp; Voice</span>
-                </div>
-                <div class="row g-2">
                     <div class="col-6">
                         <button type="button" class="a11y-toggle-card" id="a11y-stop-animations" aria-pressed="false">
                             <i class="fas fa-ban a11y-card-icon" aria-hidden="true"></i>
@@ -293,23 +475,48 @@ body.a11y-drawer-open .a11y-panel {
                             <span class="a11y-status-dot" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <div class="col-12">
-                        <button type="button" class="a11y-speech-btn" id="a11y-read-aloud" aria-pressed="false">
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="fas fa-volume-up fs-5" id="a11y-read-icon" aria-hidden="true"></i>
-                                <div class="text-start">
-                                    <span class="d-block fw-bold" id="a11y-read-label">Read Aloud</span>
-                                    <small class="text-muted d-block" id="a11y-read-sub">Listen to page content</small>
-                                </div>
-                            </div>
-                            <span class="badge bg-secondary-subtle text-light small px-2 py-1" id="a11y-read-status">Play</span>
-                        </button>
+                </div>
+            </div>
+
+            <!-- SECTION 7: Keyboard Shortcuts -->
+            <div class="a11y-group">
+                <div class="a11y-group-title">
+                    <span><i class="fas fa-keyboard me-1 text-primary" aria-hidden="true"></i> Keyboard Shortcuts</span>
+                </div>
+                <div class="p-2 bg-secondary-custom rounded-3 small">
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Open / Close panel</span>
+                        <kbd class="a11y-kbd">Alt + A</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Start / Stop Voice</span>
+                        <kbd class="a11y-kbd">Alt + V</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Read Page Aloud</span>
+                        <kbd class="a11y-kbd">Alt + R</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Go to Home</span>
+                        <kbd class="a11y-kbd">Alt + H</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Go to Projects</span>
+                        <kbd class="a11y-kbd">Alt + P</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1 border-bottom border-secondary border-opacity-25">
+                        <span class="text-secondary">Go to Contact</span>
+                        <kbd class="a11y-kbd">Alt + C</kbd>
+                    </div>
+                    <div class="d-flex justify-content-between py-1">
+                        <span class="text-secondary">Close panel</span>
+                        <kbd class="a11y-kbd">Esc</kbd>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Panel Footer (13. Reset Accessibility) -->
+        <!-- Panel Footer (Reset Accessibility) -->
         <div class="a11y-panel-footer">
             <button type="button" class="btn btn-outline-danger btn-sm w-100 py-2 fw-bold" id="a11y-reset-all">
                 <i class="fas fa-rotate-left me-1" aria-hidden="true"></i> Reset All Settings
