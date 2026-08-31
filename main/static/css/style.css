@@ -1191,10 +1191,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-card-item small {
     display: block;
-    color: var(--text-muted);
-    font-size: 0.75rem;
+    color: var(--accent-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
 }
 
 .about-card-item span {
@@ -2198,10 +2200,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-info-item small {
     display: block;
-    color: var(--text-muted);
-    font-size: 0.75rem;
+    color: var(--accent-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
 }
 
 .contact-info-item span, .contact-info-item a {

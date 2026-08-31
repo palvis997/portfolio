@@ -46,65 +46,65 @@
 
                 <div class="d-flex flex-column gap-3 mb-4">
                     <!-- Email -->
-                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3">
+                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3 border border-secondary border-opacity-25">
                         <div class="p-3 bg-primary-subtle text-primary rounded-circle">
                             <i class="fas fa-envelope fs-4"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Email Address</span>
-                            <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="text-white fw-bold text-decoration-none">
+                            <span class="d-block text-accent fw-bold small text-uppercase mb-1" style="letter-spacing: 0.05em; font-size: 0.75rem;">Email Address</span>
+                            <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="text-white fw-bold text-decoration-none fs-6">
                                 {{ site.email|default:'palvismugo06@gmail.com' }}
                             </a>
                         </div>
                     </div>
 
                     <!-- Phone -->
-                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3">
+                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3 border border-secondary border-opacity-25">
                         <div class="p-3 bg-success-subtle text-success rounded-circle">
                             <i class="fas fa-phone fs-4"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Phone Number</span>
-                            <a href="tel:{{ site.phone|default:'0711652479' }}" class="text-white fw-bold text-decoration-none">
+                            <span class="d-block text-accent fw-bold small text-uppercase mb-1" style="letter-spacing: 0.05em; font-size: 0.75rem;">Phone Number</span>
+                            <a href="tel:{{ site.phone|default:'0711652479' }}" class="text-white fw-bold text-decoration-none fs-6">
                                 {{ site.phone|default:'0711652479' }}
                             </a>
                         </div>
                     </div>
 
                     <!-- WhatsApp -->
-                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3">
+                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3 border border-secondary border-opacity-25">
                         <div class="p-3 bg-info-subtle text-info rounded-circle">
                             <i class="fab fa-whatsapp fs-4"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">WhatsApp Instant Messaging</span>
-                            <a href="https://wa.me/{{ site.whatsapp_number|default:'254711652479' }}" target="_blank" rel="noopener noreferrer" class="text-white fw-bold text-decoration-none">
+                            <span class="d-block text-accent fw-bold small text-uppercase mb-1" style="letter-spacing: 0.05em; font-size: 0.75rem;">WhatsApp Instant Messaging</span>
+                            <a href="https://wa.me/{{ site.whatsapp_number|default:'254711652479' }}" target="_blank" rel="noopener noreferrer" class="text-white fw-bold text-decoration-none fs-6">
                                 +254 711 652 479
                             </a>
                         </div>
                     </div>
 
                     <!-- GitHub -->
-                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3">
+                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3 border border-secondary border-opacity-25">
                         <div class="p-3 bg-secondary-subtle text-light rounded-circle">
                             <i class="fab fa-github fs-4"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">GitHub Profile</span>
-                            <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" target="_blank" rel="noopener noreferrer" class="text-white fw-bold text-decoration-none">
+                            <span class="d-block text-accent fw-bold small text-uppercase mb-1" style="letter-spacing: 0.05em; font-size: 0.75rem;">GitHub Profile</span>
+                            <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" target="_blank" rel="noopener noreferrer" class="text-white fw-bold text-decoration-none fs-6">
                                 github.com/{{ site.github_username|default:'palvis997' }}
                             </a>
                         </div>
                     </div>
 
                     <!-- Location -->
-                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3">
+                    <div class="glass-card p-3 rounded-3 d-flex align-items-center gap-3 border border-secondary border-opacity-25">
                         <div class="p-3 bg-warning-subtle text-warning rounded-circle">
                             <i class="fas fa-map-marker-alt fs-4"></i>
                         </div>
                         <div>
-                            <span class="text-muted small d-block">Current Location</span>
-                            <span class="text-white fw-bold">{{ site.location|default:'Kenya' }} &bull; Kirinyaga University</span>
+                            <span class="d-block text-accent fw-bold small text-uppercase mb-1" style="letter-spacing: 0.05em; font-size: 0.75rem;">Current Location</span>
+                            <span class="text-white fw-bold fs-6">{{ site.location|default:'Kenya' }} &bull; Kirinyaga University</span>
                         </div>
                     </div>
                 </div>
