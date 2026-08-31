@@ -73,11 +73,7 @@
                 <!-- Author Bio Card -->
                 <div class="glass-card p-4 mb-5 d-flex flex-column flex-sm-row align-items-center gap-4 text-center text-sm-start">
                     <div class="author-bio-avatar">
-                        {% if site.profile_image %}
-                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
-                        {% else %}
                         <img src="/media/images/profile%203.jpeg" alt="{{ site.full_name|default:'Pavis Mugo Muruga' }}" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
-                        {% endif %}
                     </div>
                     <div>
                         <h4 class="mb-1">Written by {{ post.author }}</h4>

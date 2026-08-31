@@ -123,11 +123,7 @@
                 <!-- Mobile: Centered profile photo above hero text -->
                 <div class="hero-image-wrapper animate-on-scroll" data-animation="fade-in">
                     <div class="hero-image-container hero-image-mobile">
-                        {% if site.profile_image %}
-                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="hero-image" loading="lazy">
-                        {% else %}
                         <img src="/media/images/profile%203.jpeg" alt="{{ site.full_name|default:'Pavis Mugo Muruga' }}" class="hero-image" loading="lazy">
-                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -136,11 +132,7 @@
                 <!-- Desktop: Right-side profile photo -->
                 <div class="hero-image-wrapper animate-on-scroll" data-animation="fade-in">
                     <div class="hero-image-container">
-                        {% if site.profile_image %}
-                        <img src="{{ site.profile_image.url }}" alt="{{ site.full_name }}" class="hero-image" loading="lazy">
-                        {% else %}
                         <img src="/media/images/profile%203.jpeg" alt="{{ site.full_name|default:'Pavis Mugo Muruga' }}" class="hero-image" loading="lazy">
-                        {% endif %}
                     </div>
                     <!-- Decorative rings -->
                     <div class="hero-ring hero-ring-1"></div>
