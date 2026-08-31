@@ -39,7 +39,7 @@ class SiteSettings(models.Model):
     bio = models.TextField(
         blank=True,
         default='I am a dedicated Information Technology student at Kirinyaga University, '
-                'currently in Year 2 pursuing a Bachelor of Science in Information Technology '
+                'currently in Year 3 pursuing a Bachelor of Science in Information Technology '
                 '(Expected Graduation: 2028). I possess practical industry experience gained during '
                 'a 13-week industrial attachment at the ICT Authority of Kenya, where I contributed to '
                 'software systems in Python and Django, database workflows, and IT support services. '
@@ -246,7 +246,7 @@ class ExperienceProject(models.Model):
 class Education(models.Model):
     institution = models.CharField(max_length=200, default='Kirinyaga University')
     course = models.CharField(max_length=200, default='Bachelor of Science in Information Technology')
-    level = models.CharField(max_length=100, default='Year 2', help_text='e.g., Year 2')
+    level = models.CharField(max_length=100, default='Year 3', help_text='e.g., Year 3')
     description = models.TextField(blank=True)
     start_date = models.CharField(max_length=100, blank=True, default='Current')
     end_date = models.CharField(max_length=100, blank=True, default='2028 (Expected)')
