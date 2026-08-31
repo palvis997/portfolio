@@ -51,9 +51,7 @@
                     <a href="{% url 'projects' %}" class="btn btn-primary-custom btn-lg">
                         <i class="fas fa-laptop-code me-2"></i> VIEW MY PROJECTS
                     </a>
-                    <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="btn btn-secondary-custom btn-lg" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github me-2"></i> GitHub Profile <i class="fas fa-arrow-up-right-from-square ms-1 small"></i>
-                    </a>
+
                     <a href="{% url 'resume' %}" class="btn btn-outline-custom btn-lg">
                         <i class="fas fa-file-download me-2"></i> DOWNLOAD CV
                     </a>
@@ -86,7 +84,7 @@
                         <div class="col-6 col-sm-3">
                             <div class="hero-stat-box">
                                 <span class="stat-number">2028</span>
-                                <span class="stat-label">Expected Grad</span>
+                                 <small class="text-muted">Year 3 &bull; Expected Graduation: 2028</small>
                             </div>
                         </div>
                     </div>
@@ -94,9 +92,7 @@
 
                 <!-- Social & Direct Contact Links -->
                 <div class="hero-social animate-on-scroll mt-4 d-flex gap-3 align-items-center" data-animation="fade-in">
-                    <a href="https://github.com/{{ site.github_username|default:'palvis997' }}" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
+
                     <a href="mailto:{{ site.email|default:'palvismugo06@gmail.com' }}" class="hero-social-link" aria-label="Email" title="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
