@@ -55,7 +55,7 @@
             <div class="container">
                 <!-- Brand / Logo -->
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <span class="brand-accent">&lt;</span>{{ site.full_name|default:"Pavis Mugo Muruga" }}<span class="brand-accent"> /&gt;</span>
+                    {{ site.full_name|default:"Pavis Mugo Muruga" }}
                 </a>
 
                 <!-- Mobile Toggle & Theme Button -->
@@ -147,7 +147,7 @@
                     <!-- Brand Column -->
                     <div class="col-lg-4 col-md-6">
                         <a href="{% url 'home' %}" class="footer-brand">
-                            <span class="brand-accent">&lt;</span>{{ site.full_name|default:"Pavis Mugo Muruga" }}<span class="brand-accent"> /&gt;</span>
+                            {{ site.full_name|default:"Pavis Mugo Muruga" }}
                         </a>
                         <p class="footer-tagline mt-3">
                             Building solutions. Learning continuously. Creating impact.
